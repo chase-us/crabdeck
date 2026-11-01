@@ -12,7 +12,9 @@ import {
   Zap,
   Cpu,
   RefreshCw,
-  BookOpen
+  BookOpen,
+  Bot,
+  Database
 } from 'lucide-react';
 
 interface LeftControlBoxProps {
@@ -28,6 +30,8 @@ interface LeftControlBoxProps {
   onOpenVoice: () => void;
   onOpenSetup: () => void;
   onOpenArtifacts?: () => void;
+  onOpenGemini?: () => void;
+  onOpenFirebase?: () => void;
   themeMode: string;
   onToggleTheme: () => void;
   thermalC?: number;
@@ -46,6 +50,8 @@ export const LeftControlBox: React.FC<LeftControlBoxProps> = ({
   onOpenVoice,
   onOpenSetup,
   onOpenArtifacts,
+  onOpenGemini,
+  onOpenFirebase,
   themeMode,
   onToggleTheme,
   thermalC = 42.8
@@ -72,6 +78,7 @@ export const LeftControlBox: React.FC<LeftControlBoxProps> = ({
     { view: 'worker-playground', label: 'Worker Bots', icon: '🤖', tag: 'Swarm', tagColor: 'badge-blue' },
     { view: 'log-o-matic', label: 'Live Telemetry Logs', icon: '📜', tag: '60 FPS', tagColor: 'badge-purple' },
     { view: 'pulse-select', label: 'Model Routing Matrix', icon: '🎯', tag: 'GGUF', tagColor: 'badge-green' },
+    { view: 'google-tasks', label: 'Google Tasks Heat Map', icon: '🔥', tag: 'Crab P0', tagColor: 'badge-red' },
     { view: 'google-drive', label: 'Drive & Picker', icon: '📁', tag: 'OAuth', tagColor: 'badge-blue' }
   ];
 
@@ -119,7 +126,7 @@ export const LeftControlBox: React.FC<LeftControlBoxProps> = ({
                   CRABDECK
                 </span>
                 <span className="text-[10px] font-code font-bold px-1.5 py-0.5 rounded-lg badge-gold leading-none">
-                  v0.4
+                  v1.0 PROD
                 </span>
               </div>
               <p className="text-[11px] font-code text-[#70D6FF] flex items-center gap-1.5 mt-1 truncate">
@@ -138,6 +145,23 @@ export const LeftControlBox: React.FC<LeftControlBoxProps> = ({
               <span className="text-[9px] badge-purple px-1.5 py-0.2 rounded-full">Interactive</span>
             </div>
 
+            {/* Gemini Assistant Bot Launcher Button */}
+            <button
+              onClick={() => {
+                soundFX.playWiggle();
+                triggerConfetti();
+                onOpenGemini?.();
+              }}
+              className="w-full py-2.5 px-3 rounded-2xl bg-gradient-to-r from-[#FF4D00] via-[#A855F7] to-[#70D6FF] font-display font-extrabold text-xs tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#FF4D00]/25 text-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-150 border border-white/20"
+              title="Launch Gemini Assistant Bot (gemini-3.8-flash)"
+            >
+              <Bot className="w-4 h-4 text-white" />
+              <span>GEMINI ASSISTANT BOT</span>
+              <span className="text-[9px] bg-black/40 px-1.5 py-0.5 rounded-md font-code text-[#00FF66]">
+                3.8 FLASH
+              </span>
+            </button>
+
             {/* Execute Claw Primary Button */}
             <button
               onClick={() => {
@@ -145,7 +169,7 @@ export const LeftControlBox: React.FC<LeftControlBoxProps> = ({
                 triggerConfetti();
                 onExecuteClaw();
               }}
-              className="w-full py-2.5 px-3 rounded-2xl clay-btn-red font-display font-extrabold text-xs tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-md"
+              className="w-full py-2.5 px-3 rounded-2xl clay-btn-red font-display font-extrabold text-xs tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-150"
               title="Execute Claw protocol with tactical override"
             >
               <span className="text-base">🦀</span>
@@ -153,8 +177,34 @@ export const LeftControlBox: React.FC<LeftControlBoxProps> = ({
               <span className="text-[10px] bg-black/30 px-1.5 py-0.5 rounded-md font-code">PRO</span>
             </button>
 
-            {/* Grid of 4 Secondary Action Buttons */}
+            {/* Grid of Action Buttons */}
             <div className="grid grid-cols-2 gap-1.5">
+              {/* Firebase / Firestore Status */}
+              <button
+                onClick={() => {
+                  soundFX.playClick();
+                  onOpenFirebase?.();
+                }}
+                className="py-2 px-1 rounded-xl bg-[#FF4D00]/25 hover:bg-[#FF4D00]/35 text-[#FF4D00] border border-[#FF4D00]/40 font-code font-bold text-[10px] flex items-center justify-center gap-1.5 cursor-pointer text-center transition-all hover:scale-[1.02] active:scale-95"
+                title="Open Firebase & Firestore Configuration"
+              >
+                <Database className="w-3.5 h-3.5 shrink-0" />
+                <span>FIREBASE</span>
+              </button>
+
+              {/* Gemini AI Bot */}
+              <button
+                onClick={() => {
+                  soundFX.playClick();
+                  onOpenGemini?.();
+                }}
+                className="py-2 px-1 rounded-xl bg-gradient-to-r from-[#FF4D00] to-[#FF8C00] text-black font-code font-extrabold text-[10px] flex items-center justify-center gap-1.5 cursor-pointer text-center transition-all hover:scale-[1.02] active:scale-95 shadow-sm"
+                title="Open Gemini Assistant Bot"
+              >
+                <Bot className="w-3.5 h-3.5 shrink-0 stroke-[2.5]" />
+                <span>GEMINI AI</span>
+              </button>
+
               {/* 58/58 Smoke Audit */}
               <button
                 onClick={() => {

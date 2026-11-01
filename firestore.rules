@@ -1,0 +1,79 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidSwarmMessage(data) {
+      return data.keys().hasAll(['id', 'nodeId', 'payload', 'senderUid']) &&
+             data.keys().hasOnly(['id', 'slot', 'nodeId', 'timeUtc', 'timestamp', 'archetype', 'model', 'summary', 'payload', 'senderUid', 'createdAt']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.nodeId is string && data.nodeId.size() <= 64 &&
+             data.payload is string && data.payload.size() <= 4096 &&
+             data.senderUid is string && data.senderUid.size() <= 128 &&
+             data.senderUid == request.auth.uid;
+    }
+
+    function isValidTelemetry(data) {
+      return data.keys().hasAll(['id', 'nodeId', 'latencyMs']) &&
+             data.keys().hasOnly(['id', 'nodeId', 'latencyMs', 'activePeers', 'syncFrequency', 'recordedAt']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.nodeId is string && data.nodeId.size() <= 64 &&
+             data.latencyMs is number;
+    }
+
+    function isValidOperator(data) {
+      return data.keys().hasAll(['uid', 'email']) &&
+             data.keys().hasOnly(['uid', 'email', 'displayName', 'callsign', 'role', 'theme', 'updatedAt']) &&
+             data.uid is string && data.uid.size() <= 128 &&
+             data.uid == request.auth.uid &&
+             data.email is string && data.email.size() <= 256;
+    }
+
+    // Swarm chat broadcasts and operator communications
+    match /swarm_messages/{messageId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(messageId) && isValidSwarmMessage(incoming());
+      allow update, delete: if false;
+    }
+
+    // Swarm heartbeat telemetry and latency statistics
+    match /telemetry/{telemetryId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(telemetryId) && isValidTelemetry(incoming());
+      allow update, delete: if false;
+    }
+
+    // Operator profiles strictly isolated by UID
+    match /operators/{operatorId} {
+      allow read: if isOwner(operatorId);
+      allow create, update: if isOwner(operatorId) && isValidId(operatorId) && isValidOperator(incoming());
+      allow delete: if false;
+    }
+  }
+}

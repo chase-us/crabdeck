@@ -54,6 +54,10 @@ The Crabdeck Quantum Omni-Layer serves as a sovereign, self-hosted multi-agent o
 | **FEAT-12** | **Zero-Trust MCP Gateway** | `packages/mcp-gateway/` | MCP Stdio/SSE + HMAC-SHA256 | Destructive Gated | Asserts 44–48, 57 | `12_zero_trust_mcp_gateway_edge_appliance.md` |
 | **FEAT-13** | **Voice Conductor & Claw Override**| `VoiceConductorModal.tsx` | Web Audio API / Voice Grammar | Destructive (Nonce) | Asserts 49–52 | `13_voice_conductor_tactical_override.md` |
 | **FEAT-14** | **Frictionless Onboarding** | `FrictionlessOnboardingWizard.tsx`| `install-crabdeck.ps1` / Docker | Host Environment | Asserts 53–55 | `14_frictionless_onboarding_and_deployment.md` |
+| **FEAT-15** | **Google Drive & Picker Workspace** | `GoogleDrivePickerView.tsx` | Native Picker + Drive API v3 | Destructive Gated | Workspace 1P OAuth | `15_google_drive_picker_workspace.md` |
+| **FEAT-16** | **Google Tasks Workspace Matrix** | `GoogleTasksView.tsx` | Google Tasks API v1 | Destructive Gated | Workspace 1P OAuth | `16_google_tasks_workspace_integration.md` |
+| **FEAT-17** | **Tasks Heat Map & Gemini Bot** | `GoogleTasksView.tsx` / `GeminiAssistantBot.tsx` | `gemini-3.8-flash` / Express `/api/gemini/chat` | Safe (Assistance) | Crab Claw #FF4D00 & 58/58 | `17_tasks_heatmap_gemini_bot_production.md` |
+| **FEAT-18** | **Firebase & Firestore ABAC Database** | `FirebaseStatusModal.tsx` / `BHiveChatRoom.tsx` | Cloud Firestore & Firebase Auth (`second-broker-412618`) | Zero-Trust ABAC | Hardened Rules & Persistence | `18_firebase_firestore_abac_integration.md` |
 
 ---
 

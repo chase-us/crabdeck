@@ -21,6 +21,9 @@ import { FrictionlessOnboardingWizard } from './components/FrictionlessOnboardin
 import { StackAuditVerificationModal } from './components/StackAuditVerificationModal';
 import { FeatureArtifactsModal } from './components/FeatureArtifactsModal';
 import { GoogleDrivePickerView } from './components/GoogleDrivePickerView';
+import { GoogleTasksView } from './components/GoogleTasksView';
+import { GeminiAssistantBot } from './components/GeminiAssistantBot';
+import { FirebaseStatusModal } from './components/FirebaseStatusModal';
 import { soundFX } from './utils/audio';
 
 export function App() {
@@ -40,6 +43,8 @@ export function App() {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [isArtifactsModalOpen, setIsArtifactsModalOpen] = useState(false);
+  const [isGeminiOpen, setIsGeminiOpen] = useState(false);
+  const [isFirebaseOpen, setIsFirebaseOpen] = useState(false);
   const [isBackgrounded, setIsBackgrounded] = useState(false);
 
   // Document Visibility Lifecycle Hooks: 0.0% Idle CPU overhead when backgrounded
@@ -199,6 +204,8 @@ export function App() {
           onOpenVoice={() => setIsVoiceModalOpen(true)}
           onOpenSetup={() => setIsOnboardingOpen(true)}
           onOpenArtifacts={() => setIsArtifactsModalOpen(true)}
+          onOpenGemini={() => setIsGeminiOpen(true)}
+          onOpenFirebase={() => setIsFirebaseOpen(true)}
           themeMode={themeMode}
           onToggleTheme={() => setThemeMode(prev => prev === 'claymorphic' ? 'cyber' : 'claymorphic')}
           thermalC={metrics.thermalC || 42.8}
@@ -240,6 +247,14 @@ export function App() {
                 setIsArtifactsModalOpen(true);
                 setIsMobileDrawerOpen(false);
               }}
+              onOpenGemini={() => {
+                setIsGeminiOpen(true);
+                setIsMobileDrawerOpen(false);
+              }}
+              onOpenFirebase={() => {
+                setIsFirebaseOpen(true);
+                setIsMobileDrawerOpen(false);
+              }}
               themeMode={themeMode}
               onToggleTheme={() => setThemeMode(prev => prev === 'claymorphic' ? 'cyber' : 'claymorphic')}
               thermalC={metrics.thermalC || 42.8}
@@ -268,6 +283,8 @@ export function App() {
           onOpenOnboarding={() => setIsOnboardingOpen(true)}
           onOpenAudit={() => setIsAuditModalOpen(true)}
           onOpenArtifacts={() => setIsArtifactsModalOpen(true)}
+          onOpenGemini={() => setIsGeminiOpen(true)}
+          onOpenFirebase={() => setIsFirebaseOpen(true)}
           onToggleSidebar={() => setIsMobileDrawerOpen(prev => !prev)}
         />
 
@@ -379,8 +396,23 @@ export function App() {
           {currentView === 'google-drive' && (
             <GoogleDrivePickerView />
           )}
+
+          {/* Google Tasks Workspace View with Urgency Heat Map */}
+          {currentView === 'google-tasks' && (
+            <GoogleTasksView onOpenGemini={() => setIsGeminiOpen(true)} />
+          )}
         </main>
       </div>
+
+      {/* Gemini Assistant Bot AI Co-Pilot Panel */}
+      <GeminiAssistantBot
+        isOpen={isGeminiOpen}
+        onClose={() => setIsGeminiOpen(false)}
+        onNavigateToView={(view) => {
+          setCurrentView(view);
+          setIsGeminiOpen(false);
+        }}
+      />
 
       {/* Tactical Claw Override Modal */}
       <ExecuteClawModal
@@ -415,6 +447,12 @@ export function App() {
         isOpen={isArtifactsModalOpen}
         onClose={() => setIsArtifactsModalOpen(false)}
         onNavigateToView={(view) => setCurrentView(view)}
+      />
+
+      {/* Firebase & Firestore ABAC Status Modal */}
+      <FirebaseStatusModal
+        isOpen={isFirebaseOpen}
+        onClose={() => setIsFirebaseOpen(false)}
       />
     </div>
   );

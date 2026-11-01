@@ -421,5 +421,87 @@ export const FEATURE_ARTIFACTS: FeatureArtifact[] = [
         body: 'Requires explicit user confirmation before any file deletion or modification to guarantee user data protection.'
       }
     ]
+  },
+  {
+    id: 'FEAT-16',
+    number: '16',
+    title: 'Google Tasks Workspace Integration',
+    fileName: '16_google_tasks_workspace_integration.md',
+    category: 'Operations',
+    icon: '✅',
+    securityTier: 'Destructive',
+    endpoints: ['tasks.googleapis.com (v1)'],
+    assertions: 'Google Tasks 1P OAuth Certified',
+    summary: 'Cloud-synchronized task list and to-do management for Crabdeck daily sprints, status toggling, and one-click briefing imports.',
+    badgeColor: 'badge-green',
+    sections: [
+      {
+        heading: 'Google Tasks API v1 Direct Sync',
+        body: 'Seamlessly interacts with users/@me/lists and lists/{tasklistId}/tasks to list, create, complete, and organize operational checkpoints.'
+      },
+      {
+        heading: 'Daily Sprint Checklist 1-Click Import',
+        body: 'Allows operators to instantly dispatch Crabdeck Ultra Daily Sprint items (loopback tests, AST audits, Megabrain benchmarks) into Google Tasks.'
+      },
+      {
+        heading: 'Mandatory Destructive Action Safeguards',
+        body: 'Enforces modal confirmation dialogs for permanent task and list deletions, strictly complying with Workspace integration security guidelines.'
+      }
+    ]
+  },
+  {
+    id: 'FEAT-17',
+    number: '17',
+    title: 'Google Tasks Heat Map & Gemini Assistant Bot',
+    fileName: '17_tasks_heatmap_gemini_bot_production.md',
+    category: 'Intelligence',
+    icon: '🔥',
+    securityTier: 'Safe',
+    endpoints: ['POST /api/gemini/chat', 'tasks.googleapis.com (v1)', 'GET /api/heartbeat'],
+    assertions: 'Gemini 3.8 Flash & Crab Claw #FF4D00 Verified',
+    summary: 'Real-time color-coded urgency heat map visualizer with Crab Claw Orange (#FF4D00) intensity for P0 urgent items, paired with server-side Gemini 3.8 Flash AI Assistant Bot.',
+    badgeColor: 'badge-gold',
+    sections: [
+      {
+        heading: 'Crab Claw Orange (#FF4D00) Heat Map Matrix',
+        body: 'Visual urgency intensity distribution classifier sorting tasks into 4 heat tiers: Crab Claw Orange (#FF4D00) for P0 Critical, Amber (#FF8C00) for P1 High, Gold (#FFD700) for P2 Normal, and Cyber Cyan (#70D6FF) for P3 Low.'
+      },
+      {
+        heading: 'Automated Urgency Derivation & Quick Filtering',
+        body: 'Automatically calculates urgency based on due date proximity (< 24h or overdue automatically escalates to Crab Claw Orange) and priority prefixes ([CRAB-P0], [CRITICAL]). Includes instant interactive heat-tier filtering.'
+      },
+      {
+        heading: 'Server-Side Gemini 3.8 Flash Assistant Bot',
+        body: 'Full-stack AI assistant bot using modern @google/genai TypeScript SDK on Express backend (/api/gemini/chat), with User-Agent: aistudio-build header and zero client-side key exposure.'
+      }
+    ]
+  },
+  {
+    id: 'FEAT-18',
+    number: '18',
+    title: 'Firebase & Firestore Zero-Trust ABAC Database',
+    fileName: '18_firebase_firestore_abac_integration.md',
+    category: 'Security',
+    icon: '🛡️',
+    securityTier: 'Safe',
+    endpoints: ['Cloud Firestore Enterprise', 'Firebase Auth (Google Sign-In)', 'rules.firestore'],
+    assertions: 'Hardened ABAC 8 Pillars Deployed',
+    summary: 'Cloud Firestore database and Firebase Authentication configured for project second-broker-412618 with zero-trust security rules and real-time swarm message synchronization.',
+    badgeColor: 'badge-red',
+    sections: [
+      {
+        heading: 'Cloud Project & Database Provisioning',
+        body: 'Fully provisioned on Google Cloud project second-broker-412618 (us-east1) with isolated database ID ai-studio-crabdeck-4c66f518-25c9-4c07-b3ae-f2e1bd54f2cc.'
+      },
+      {
+        heading: 'Hardened Zero-Trust ABAC Security Rules',
+        body: 'Rules enforce default-deny, strict ID variable character limits, payload size constraints (<= 4096 bytes), and caller-authenticated identity checks matching request.auth.uid.'
+      },
+      {
+        heading: 'Real-Time Swarm Message & Telemetry Persistence',
+        body: 'Human-in-the-loop operator directives and telemetry heartbeats sync directly to /swarm_messages and /telemetry collections, enabling cross-node synchronization.'
+      }
+    ]
   }
 ];
+

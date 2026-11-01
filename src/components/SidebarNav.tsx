@@ -18,7 +18,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Radio,
-  Cpu
+  Cpu,
+  CheckSquare,
+  Folder
 } from 'lucide-react';
 
 interface SidebarNavProps {
@@ -81,6 +83,13 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
         { view: 'gloop-analytics', label: 'Gloop & Sludge', icon: Sliders },
         { view: 'megabrain', label: 'APU Overclock', icon: Gauge },
         { view: 'log-o-matic', label: 'Live Logs', icon: Terminal }
+      ]
+    },
+    {
+      label: 'WORKSPACE INTEGRATION',
+      items: [
+        { view: 'google-tasks', label: 'Google Tasks', icon: CheckSquare, badge: 'Tasks' },
+        { view: 'google-drive', label: 'Drive & Picker', icon: Folder, badge: 'Drive' }
       ]
     }
   ];

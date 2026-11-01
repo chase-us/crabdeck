@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "SwarmMessage": {
+      "title": "SwarmMessage",
+      "description": "Tactical chat message and peer signal emitted in Crabdeck Swarm Mesh",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "slot": { "type": "number" },
+        "nodeId": { "type": "string", "maxLength": 64 },
+        "timeUtc": { "type": "string", "maxLength": 16 },
+        "timestamp": { "type": "string", "maxLength": 32 },
+        "archetype": { "type": "string", "maxLength": 32 },
+        "model": { "type": "string", "maxLength": 64 },
+        "summary": { "type": "string", "maxLength": 256 },
+        "payload": { "type": "string", "maxLength": 4096 },
+        "senderUid": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "nodeId", "payload", "senderUid"]
+    },
+    "TelemetryRecord": {
+      "title": "TelemetryRecord",
+      "description": "Heartbeat and network latency metrics synced from Crabdeck nodes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "nodeId": { "type": "string", "maxLength": 64 },
+        "latencyMs": { "type": "number" },
+        "activePeers": { "type": "number" },
+        "syncFrequency": { "type": "number" },
+        "recordedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "nodeId", "latencyMs"]
+    },
+    "OperatorProfile": {
+      "title": "OperatorProfile",
+      "description": "Crabdeck operator identity and tactical session settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "callsign": { "type": "string", "maxLength": 64 },
+        "role": { "type": "string", "maxLength": 32 },
+        "theme": { "type": "string", "maxLength": 32 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/swarm_messages/{messageId}": {
+      "schema": "SwarmMessage",
+      "description": "Collection of real-time swarm broadcasts and operator messages"
+    },
+    "/telemetry/{telemetryId}": {
+      "schema": "TelemetryRecord",
+      "description": "Collection of peer telemetry and latency metrics"
+    },
+    "/operators/{operatorId}": {
+      "schema": "OperatorProfile",
+      "description": "User profile records indexed by Firebase Auth UID"
+    }
+  }
+}

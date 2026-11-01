@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { User } from 'firebase/auth';
 import {
   initAuth,
@@ -68,25 +68,7 @@ export const GoogleDrivePickerView: React.FC = () => {
   const [isExportingArtifacts, setIsExportingArtifacts] = useState(false);
   const [exportStatus, setExportStatus] = useState<string | null>(null);
 
-  // Initialize Auth state
-  useEffect(() => {
-    const unsubscribe = initAuth(
-      (currentUser, token) => {
-        setUser(currentUser);
-        setAccessToken(token);
-        fetchFiles(token);
-      },
-      () => {
-        setUser(null);
-        setAccessToken(null);
-        setFiles([]);
-      }
-    );
-
-    return () => unsubscribe();
-  }, []);
-
-  const fetchFiles = async (token?: string, query?: string) => {
+  const fetchFiles = useCallback(async (token?: string, query?: string) => {
     const tokenToUse = token || accessToken;
     if (!tokenToUse) return;
 
@@ -103,7 +85,25 @@ export const GoogleDrivePickerView: React.FC = () => {
     } finally {
       setIsLoadingFiles(false);
     }
-  };
+  }, [accessToken]);
+
+  // Initialize Auth state
+  useEffect(() => {
+    const unsubscribe = initAuth(
+      (currentUser, token) => {
+        setUser(currentUser);
+        setAccessToken(token);
+        fetchFiles(token);
+      },
+      () => {
+        setUser(null);
+        setAccessToken(null);
+        setFiles([]);
+      }
+    );
+
+    return () => unsubscribe();
+  }, [fetchFiles]);
 
   const handleSignIn = async () => {
     setIsSigningIn(true);

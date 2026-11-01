@@ -6,8 +6,8 @@ import firebaseConfig from '../../firebase-applet-config.json';
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// All configured Google Drive & Picker Workspace Scopes
-export const WORKSPACE_DRIVE_SCOPES = [
+// All configured Google Drive, Picker & Tasks Workspace Scopes
+export const WORKSPACE_SCOPES = [
   'https://www.googleapis.com/auth/drive',
   'https://www.googleapis.com/auth/drive.file',
   'https://www.googleapis.com/auth/drive.metadata.readonly',
@@ -20,12 +20,17 @@ export const WORKSPACE_DRIVE_SCOPES = [
   'https://www.googleapis.com/auth/drive.meet.readonly',
   'https://www.googleapis.com/auth/drive.metadata',
   'https://www.googleapis.com/auth/drive.photos.readonly',
-  'https://www.googleapis.com/auth/drive.scripts'
+  'https://www.googleapis.com/auth/drive.scripts',
+  'https://www.googleapis.com/auth/tasks',
+  'https://www.googleapis.com/auth/tasks.readonly',
 ];
 
+// Backwards compatibility alias
+export const WORKSPACE_DRIVE_SCOPES = WORKSPACE_SCOPES;
+
 const provider = new GoogleAuthProvider();
-// Add all Google Drive & Picker scopes
-WORKSPACE_DRIVE_SCOPES.forEach(scope => {
+// Add all Google Workspace scopes (Drive, Picker, Tasks)
+WORKSPACE_SCOPES.forEach(scope => {
   provider.addScope(scope);
 });
 provider.setCustomParameters({

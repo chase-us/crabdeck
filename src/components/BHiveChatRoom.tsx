@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import { soundFX } from '../utils/audio';
+import { saveSwarmMessageToFirestore } from '../services/firebaseService';
 import {
   MessageSquare,
   Play,
@@ -422,6 +423,21 @@ export const BHiveChatRoom: React.FC<BHiveChatRoomProps> = ({
     setMessages(prev => [...prev, opMsg]);
     // Queue for the very next node to address
     setOperatorQueue(prev => [...prev, text]);
+
+    // Persist to Firebase Firestore collection /swarm_messages
+    saveSwarmMessageToFirestore({
+      id: opMsg.id,
+      slot: opMsg.slot,
+      nodeId: opMsg.nodeId,
+      timeUtc: opMsg.timeUtc,
+      timestamp: opMsg.timestamp,
+      archetype: opMsg.archetype,
+      model: opMsg.model,
+      summary: opMsg.summary,
+      payload: opMsg.payload,
+    }).catch(err => {
+      console.debug('Firestore message persistence note:', err);
+    });
   };
 
   // Reaction handler

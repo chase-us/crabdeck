@@ -13,7 +13,8 @@ export type AppView =
   | 'log-o-matic'
   | 'worker-playground'
   | 'terminal'
-  | 'google-drive';
+  | 'google-drive'
+  | 'google-tasks';
 
 export type AppThemeMode = 'sophisticated-dark' | 'cyber' | 'claymorphic';
 

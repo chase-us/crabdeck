@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification and architectural artifact for Crabdeck Google Tasks Workspace Integration. Covers Google Tasks API v1 endpoints, in-memory OAuth credential caching, task lists management, real-time status toggling, and mandatory confirmation modals for destructive deletions.",
+  "updatedAt":  "2026-11-01T11:48:31.025106888Z",
+  "userFacing":  true
+}

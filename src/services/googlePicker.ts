@@ -1,10 +1,4 @@
-// Global TypeScript definitions for Google API and Google Picker
-declare global {
-  interface Window {
-    gapi?: any;
-    google?: any;
-  }
-}
+/// <reference path="../types/google.d.ts" />
 
 export interface PickedGoogleDriveFile {
   id: string;

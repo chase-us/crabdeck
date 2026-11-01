@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppView, AppThemeMode } from '../types';
-import { ChevronRight, Menu, Radio, ShieldCheck, Sparkles, Volume2, VolumeX, BookOpen } from 'lucide-react';
+import { ChevronRight, Menu, Radio, ShieldCheck, Sparkles, Volume2, VolumeX, BookOpen, Bot, Database } from 'lucide-react';
 import { soundFX } from '../utils/audio';
 
 interface NavigationHeaderProps {
@@ -16,6 +16,8 @@ interface NavigationHeaderProps {
   onOpenOnboarding?: () => void;
   onOpenAudit?: () => void;
   onOpenArtifacts?: () => void;
+  onOpenGemini?: () => void;
+  onOpenFirebase?: () => void;
   onToggleSidebar?: () => void;
 }
 
@@ -23,7 +25,9 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   currentView,
   onToggleSidebar,
   activeModelName,
-  onOpenArtifacts
+  onOpenArtifacts,
+  onOpenGemini,
+  onOpenFirebase
 }) => {
   const getViewDetails = (view: AppView): { section: string; title: string; icon: string } => {
     switch (view) {
@@ -54,6 +58,8 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         return { section: 'Routing', title: 'Model Routing Matrix', icon: '🎯' };
       case 'google-drive':
         return { section: 'Workspace', title: 'Google Drive & Picker', icon: '📁' };
+      case 'google-tasks':
+        return { section: 'Workspace', title: 'Google Tasks Matrix', icon: '✅' };
       default:
         return { section: 'Workspace', title: 'Control Plane', icon: '🦀' };
     }
@@ -107,6 +113,35 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
 
       {/* Right: Quick Signal Indicator + Artifacts Modal Launcher */}
       <div className="flex items-center gap-2">
+        {onOpenFirebase && (
+          <button
+            onClick={() => {
+              soundFX.playClick();
+              onOpenFirebase();
+            }}
+            className="px-2.5 py-1 rounded-xl bg-[#FF4D00]/20 hover:bg-[#FF4D00]/30 text-[#FF4D00] border border-[#FF4D00]/40 text-xs font-code font-bold flex items-center gap-1.5 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
+            title="Open Firebase & Firestore Database Status"
+          >
+            <Database className="w-3.5 h-3.5 stroke-[2.2]" />
+            <span className="hidden md:inline">FIREBASE</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00FF66] animate-pulse" />
+          </button>
+        )}
+
+        {onOpenGemini && (
+          <button
+            onClick={() => {
+              soundFX.playClick();
+              onOpenGemini();
+            }}
+            className="px-2.5 py-1 rounded-xl bg-gradient-to-r from-[#FF4D00] to-[#FF8C00] text-black text-xs font-code font-extrabold flex items-center gap-1.5 cursor-pointer shadow-md shadow-[#FF4D00]/20 hover:scale-105 active:scale-95 transition-transform"
+            title="Open Gemini Assistant Bot"
+          >
+            <Bot className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span className="hidden sm:inline">GEMINI AI</span>
+          </button>
+        )}
+
         {onOpenArtifacts && (
           <button
             onClick={() => {
@@ -118,7 +153,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           >
             <BookOpen className="w-3.5 h-3.5 shrink-0" />
             <span className="hidden sm:inline">ARTIFACTS</span>
-            <span className="text-[10px] bg-black/20 px-1 py-0.2 rounded font-extrabold">14</span>
+            <span className="text-[10px] bg-black/20 px-1 py-0.2 rounded font-extrabold">16</span>
           </button>
         )}
 

@@ -1,0 +1,38 @@
+{
+  "gcpProjectId": "second-broker-412618",
+  "gcpProjectNumber": 70954141715,
+  "canonicalProductionDomain": "https://hermesclaw.ai",
+  "oAuthClientId": "70954141715-4q3a1d97gdk8vkf0lk35mbcqaqb8gd4a.apps.googleusercontent.com",
+  "authorizedJavaScriptOrigins": [
+    "https://hermesclaw.ai",
+    "https://ais-dev-vaqiqabisfgomgwypr6s6i-262573108130.us-east1.run.app",
+    "https://ais-pre-vaqiqabisfgomgwypr6s6i-262573108130.us-east1.run.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+  ],
+  "authorizedRedirectURIs": [
+    "https://hermesclaw.ai/__/auth/handler",
+    "https://second-broker-412618.firebaseapp.com/__/auth/handler",
+    "https://ais-dev-vaqiqabisfgomgwypr6s6i-262573108130.us-east1.run.app/__/auth/handler",
+    "https://ais-pre-vaqiqabisfgomgwypr6s6i-262573108130.us-east1.run.app/__/auth/handler",
+    "http://localhost:3000/__/auth/handler",
+    "http://127.0.0.1:3000/__/auth/handler"
+  ],
+  "configuredScopes": [
+    "https://www.googleapis.com/auth/tasks",
+    "https://www.googleapis.com/auth/tasks.readonly",
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive.metadata.readonly",
+    "https://www.googleapis.com/auth/drive.readonly",
+    "https://www.googleapis.com/auth/drive.activity",
+    "https://www.googleapis.com/auth/drive.activity.readonly",
+    "https://www.googleapis.com/auth/drive.appdata",
+    "https://www.googleapis.com/auth/drive.apps.readonly",
+    "https://www.googleapis.com/auth/drive.install",
+    "https://www.googleapis.com/auth/drive.meet.readonly",
+    "https://www.googleapis.com/auth/drive.metadata",
+    "https://www.googleapis.com/auth/drive.photos.readonly",
+    "https://www.googleapis.com/auth/drive.scripts"
+  ]
+}
