@@ -3,8 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var OrigWebSocket = window.WebSocket;
+        if (OrigWebSocket) {
+          var WrappedWebSocket = function (url, protocols) {
+            var isViteHmr =
+              protocols === 'vite-hmr' ||
+              (Array.isArray(protocols) && protocols.indexOf('vite-hmr') !== -1) ||
+              (typeof url === 'string' && url.indexOf('token=') !== -1);
+            if (isViteHmr) {
+              var dummy = new EventTarget();
+              dummy.readyState = 3;
+              dummy.send = function () {};
+              dummy.close = function () {};
+              dummy.binaryType = 'blob';
+              dummy.bufferedAmount = 0;
+              dummy.extensions = '';
+              dummy.protocol = 'vite-hmr';
+              dummy.url = String(url || '');
+              return dummy;
+            }
+            return protocols !== undefined
+              ? new OrigWebSocket(url, protocols)
+              : new OrigWebSocket(url);
+          };
+          WrappedWebSocket.prototype = OrigWebSocket.prototype;
+          WrappedWebSocket.CONNECTING = OrigWebSocket.CONNECTING;
+          WrappedWebSocket.OPEN = OrigWebSocket.OPEN;
+          WrappedWebSocket.CLOSING = OrigWebSocket.CLOSING;
+          WrappedWebSocket.CLOSED = OrigWebSocket.CLOSED;
+          window.WebSocket = WrappedWebSocket;
+        }
+      })();
+    </script>
     <title>Crabdeck</title>
     <meta name="description" content="Crabdeck - Advanced, user-friendly AI multi-agent operating system and control plane." />
+    <meta property="og:title" content="Crabdeck" />
+    <meta property="og:description" content="Crabdeck - Advanced, user-friendly AI multi-agent operating system and control plane." />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

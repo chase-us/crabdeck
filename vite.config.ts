@@ -14,6 +14,7 @@ export default defineConfig(() => {
     },
     server: {
       hmr: false,
+      ws: false as const,
       watch: null,
     },
   };
