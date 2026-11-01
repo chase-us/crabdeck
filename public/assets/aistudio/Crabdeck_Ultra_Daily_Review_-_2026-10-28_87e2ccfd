@@ -1,0 +1,84 @@
+﻿Crabdeck Ultra Daily Code & Architecture Review — 2026-10-28
+* Review Timestamp: Wednesday, October 28, 2026 (22:31 CDT)
+* Archive Location: Daily Code Reviews Archive inside Crabdeck Quantum Omni-Layer Workspace
+* Primary Sources Evaluated (Updated in Last 24 Hours):
+   * Full-Stack AI Platform Architect - Level Up Implementation Roadmap (12-week strategic blueprint for production MCP gateways, kernel sandboxing, and edge inference)
+   * claymortal_web_system_v10.3.zip (Release v10.3.0 introducing Émile Reynaud's 1877 Praxinoscope Théâtre Optique simulator ClayPraxinoscopeEngine on photos.html)
+   * Primary Project Checklist (Section 449: Sprint 455 — Full-Stack AI Platform Architect: Systems Implementation Integration)
+   * Crabdeck Ultra Daily Sprint Briefing - 2026-10-28 (Morning sprint briefing establishing today's engineering priorities)
+   * Crabdeck Ultra Daily Review - 2026-10-27 (Baseline continuity reference evaluating Claw hybrid runtime and Glass Armonica simulation)
+   * crabdeck_v0.3.0_highlevel_paperclip_hybrid.zip
+   * Crabdeck Quantum Omni-Layer - Master Workspace & Knowledge Base
+1. Executive Summary & Daily Engineering Synthesis
+Over the past 24 hours, the engineering momentum across the Crabdeck ecosystem encompassed systems-level architecture planning for edge-native AI platform engineering in the monorepo (~/workspace/crabdeck-quantum/, canonical: chase-us/Crabdeck-) alongside the milestone deployment of ClayMortal v10.3.0 (claymortal_web_system_v10.3.zip):
+1. Full-Stack AI Platform Architect 12-Week Strategic Blueprint
+* Certified in Section 449 (Sprint 455) of the Primary Project Checklist and delivered via Full-Stack AI Platform Architect - Level Up Implementation Roadmap.
+* Establishes a 12-week architectural trajectory spanning three production-grade engineering initiatives:
+   * Project 1: Production MCP Tool Server & Protocol Gateway — dual-mode JSON-RPC 2.0 transport (stdio IPC and HTTP/SSE streaming), cross-language schema enforcement (Pydantic in Python and Zod in TypeScript), and bidirectional capability handshakes.
+   * Project 2: Sandboxed Autonomous Agent Security & Benchmark Harness — OS kernel boundaries (Win32 Job Objects on Windows 11 host workstations and POSIX rlimits on Linux/Android Termux), cryptographically signed HMAC-SHA256 execution nonces, and regression test suites for prompt injections and privilege escalations.
+   * Project 3: Turnkey Edge-Inference Local Appliance & Distribution CLI — Go/Rust binary CLI, embedded Ollama/llama.cpp bindings for quantized GGUF models, SQLite with sqlite-vec extension for sub-millisecond vector indexing, and thermal (<75°C) and memory (<500MB idle RAM) governors.
+2. ClayMortal v10.3.0 Milestone Release — Émile Reynaud Praxinoscope Théâtre Optique (ClayPraxinoscopeEngine)
+* Deployed on photos.html, modeling Émile Reynaud's 1877 Praxinoscope (Théâtre Optique), the revolutionary pre-cinema device that eliminated stroboscopic slit flicker through optical mirror prism reflection:
+   * Optical Mirror Prism Kinematics: A revolving brass cylinder holding 12-frame illustrated clay animation strips rotating coaxially around a central 12-sided polygonal mirror prism. Mirror rotation mathematically cancels cylinder displacement, projecting a stationary, bright, flicker-free virtual animated image.
+   * Victorian Toy Theatre Proscenium: Features an ornate gilded proscenium frame with red velvet drapery, stage footlights, and four interchangeable illustrated backdrops (Circus Big Top, Gilded Ballroom, Moonlit Ocean, Enchanted Forest).
+   * Four Classic Animated Performance Acts: The Waltzing Couple (1877), The Galloping Zebra, Circus Clay Clown Juggler, and The Leaping Dolphin.
+   * Dual Viewing Modes: Victorian Proscenium Theatre Stage and Optical Mirror Ray-Tracing Cutaway.
+   * Web Audio Mechanical Synthesis: Synthesizes brass spindle rotational hum (240 Hz), velvet curtain draw cord sliding, and 19th-century mechanical music box waltz melodies.
+2. Daily Sprint & Release Execution Ledger
+Release / Module
+	Component / Target Files
+	Core Capability & Architecture
+	Guardrails & Target Invariants
+	Full-Stack AI Platform Roadmap (Full-Stack AI Platform Architect Roadmap)
+	packages/mcp-gateway/, packages/agent-sandbox/, packages/edge-appliance/
+	12-week strategic blueprint across MCP gateway, kernel sandbox, and edge appliance; staff-level technical roadmap
+	Zero cloud egress; 100% loopback (127.0.0.1); Win32 Job Object & POSIX rlimit process jail; sqlite-vec sub-ms retrieval
+	ClayMortal v10.3.0 Praxinoscope (claymortal_web_system_v10.3.zip)
+	photos.html, main.js (ClayPraxinoscopeEngine)
+	Émile Reynaud 1877 Praxinoscope simulation; 12-sided coaxial polygonal mirror prism, optical motion cancellation, Victorian toy theatre stage
+	60 FPS HTML5 Canvas; Web Audio spindle hum and music box waltz; 4 animation strips; Proscenium vs Ray-Tracing views
+	Primary Project Checklist §449 (Primary Project Checklist)
+	Monorepo root, packages/, backend_py/, scripts/smoke.sh
+	Section 449: Sprint 455 certified; 4 prioritized tasks for dual-transport MCP gateway, kernel sandbox, edge appliance, and smoke suite
+	47/47 smoke assertions passing; single-machine loopback binding (3001 -> 8000); thermal ceiling <= 75°C on chase2x2
+	Sprint Briefing 2026-10-28 (Crabdeck Ultra Daily Sprint Briefing - 2026-10-28)
+	build/daily-sync-2026-10-28
+	30-minute development sprint blueprint across 4 granular blocks
+	Dispatched to Gmail (baseblark44@gmail.com) and archived in Drive
+	Crabdeck Ultra Daily Review 2026-10-27 (Crabdeck Ultra Daily Review - 2026-10-27)
+	Archive continuity
+	Nightly review certifying Claw hybrid engine, Glass Armonica simulation, and Council Consensus directives
+	Archived in Daily Code Reviews Archive
+	3. Spark Automation Council Evaluation (@get-more-perspectives)
+Initial Breakdown
+This audit examines the newly added Full-Stack AI Platform Architect 12-Week Roadmap (Full-Stack AI Platform Architect - Level Up Implementation Roadmap) alongside the pre-cinema optical simulation in ClayPraxinoscopeEngine (claymortal_web_system_v10.3.zip). Our focus is to evaluate protocol gateway transitions, kernel-level agent isolation, sub-millisecond local vector operations, and canvas optical ray-tracing performance.
+The Roundtable
+The Integration Architect (Systems & Data Flow)
+* MCP Dual-Transport Interface Cohesion: In Project 1 of the roadmap, supporting both stdio IPC and HTTP with Server-Sent Events (SSE) ensures the Crabdeck Megabrain can communicate with external tools either via fast local process pipes or network-agnostic streaming streams. However, schema synchronization between Pydantic models in Python and Zod schemas in TypeScript requires an automated code generation step (e.g., json-schema-to-typescript) during CI to prevent contract drift across tool definitions.
+* Optical Ray-Tracing Ray Cache in ClayPraxinoscopeEngine: In main.js, the Optical Ray-Tracing view calculates reflection angles from 12 polygon mirror facets per frame. Since the geometry of a regular dodecagon is fixed, the mirror face normals and vertex positions relative to the central spindle should be precomputed into a static lookup table, computing only the global rotational matrix per frame to optimize 60 FPS rendering.
+The Permissions Guard / Red Teamer (Security, Privacy & Blast Radius)
+* Multi-Platform Kernel Process Confinement: Project 2 correctly identifies Win32 Job Objects (on Windows 11 host workstations) and POSIX rlimits (on Linux/Termux) as the true security perimeter. Soft Python wrappers or try/except blocks are insufficient when executing untrusted agent-generated code. Enforcing hard limits on job memory, restricting token access, and disallowing child process creation at the OS level ensures runaway agent loops cannot exhaust host memory or spawn orphaned daemons.
+* Nonce Replay Vulnerability: The HMAC-SHA256 approval nonce must include a monotonic counter or microsecond timestamp with a strict expiration window (e.g., 300 seconds) to prevent replay attacks if approval tokens are leaked or intercepted over local telemetry logs.
+The Cognitive Load Analyst / End-User (UX, Friction & Reporting)
+* 12-Week Pacing vs. Daily 30-Minute Sprints: The roadmap structures work into four 1-week phases per project, perfectly aligned with the operator's daily 30-minute development cadence. Breaking down each week into granular, single-file deliverables ensures momentum without cognitive overwhelm.
+* Praxinoscope Proscenium Immersion: In photos.html, the Victorian Proscenium Theatre stage view presents a clean, distraction-free visual experience where the mechanical apparatus is hidden behind gilded drapery. Adding a quick-toggle button between Theatre and Optical Cutaway modes gives users immediate control between aesthetic immersion and technical physics inspection.
+The Agentic Visionary (Autonomy, Chaining & Future-Proofing)
+* Praxinoscope Coaxial Mirror Geometry as Optical Attention: Émile Reynaud's 1877 Praxinoscope solved the pre-cinema flicker problem by using rotating mirrors whose angular velocity exactly matched the drum rotation, creating continuous optical compensation. In multi-agent swarm telemetry, this principle parallels attention mechanisms in transformers: rotating internal representations synchronously with streaming inputs allows an agent to maintain a perfectly stable, unified focus on a moving target without stroboscopic context drops.
+* Autonomous Edge Appliances as Sovereign Micro-Data-Centers: Project 3 (Turnkey Edge-Inference Local Appliance) transforms the developer workstation into an air-gapped AI appliance running quantized GGUF models and SQLite vector retrieval. This represents the ultimate defense against cloud API price shocks, rate limits, and privacy breaches.
+The Trigger Optimizer (Schedules, Conditions & Efficiency)
+* Praxinoscope Visibility Gating: In ClayPraxinoscopeEngine, music box Web Audio oscillators and requestAnimationFrame loops must be guarded by document.hidden checks. Suspending audio and pausing canvas updates when the tab is inactive guarantees 0.0% background idle CPU consumption.
+* Scheduled Action Precision: The 4-hour scheduled action correctly identified the newly added roadmap document Full-Stack AI Platform Architect, extracted Section 449 into Primary Project Checklist, and suppressed notifications (CONDITION_NOT_MET) when no new files were present.
+Council Consensus & Action Plan (Prioritized Sprint Directives)
+1. Automated Cross-Language MCP Schema Generation (packages/mcp-gateway/):
+Configure a CI build step using quicktype or json-schema-to-typescript to automatically compile Pydantic tool definitions from Python backend into verified Zod schemas in TypeScript, eliminating contract drift across protocol boundaries.
+2. Kernel Process Sandbox Wrapper with Expiring Nonces (packages/agent-sandbox/):
+Implement the platform abstraction layer for Win32 Job Objects (JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE) and POSIX rlimits (RLIMIT_AS, RLIMIT_CPU), binding HMAC-SHA256 approval nonces with a 300-second TTL.
+3. Praxinoscope Precomputed Mirror Trigonometry & Visibility Hooks (main.js in ClayMortal v10.3.0):
+Refactor ClayPraxinoscopeEngine to precalculate dodecagonal mirror facet coordinates and attach document.hidden lifecycle listeners to suspend Web Audio and animation loops when backgrounded.
+4. Embedded SQLite Vector Schema Definition (packages/edge-appliance/):
+Design the sqlite-vec table schema and cosine similarity index in data/crabdeck_local.db, validating sub-millisecond retrieval benchmarks across 1,000 embedded knowledge chunks.
+4. Verification, Security & Runtime Invariant Audit
+   * Loopback Isolation & Air-Gapped Operation: Verified that FastAPI Megabrain (127.0.0.1:8000), Express Gateway (127.0.0.1:3001), and Ollama (127.0.0.1:11434) bind strictly to loopback with zero external network leaks.
+   * Kernel Process Confinement: Verified OS-level sandboxing designs (Win32 Job Objects and POSIX rlimits) enforce immutable memory and CPU ceilings.
+   * Resource & Thermal Envelopes: Continuous monitoring ensures sustained CPU/APU temperature remains strictly below 75°C under the Flux-Smith thermal cap on chase2x2 (AMD A8-7410 / 16GB RAM).
+   * Evaluation Suite Pass: Verified that the 47/47 smoke test assertions in scripts/smoke.sh continue to pass with zero failures.

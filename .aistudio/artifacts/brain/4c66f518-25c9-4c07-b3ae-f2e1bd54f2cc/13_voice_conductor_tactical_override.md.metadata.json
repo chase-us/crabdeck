@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Voice Conductor & Tactical Audio Synthesizer. Details natural speech command parsing, speech grammar intent routing, procedural Web Audio API oscillator synthesis, and the Execute Claw tactical override sequence.",
+  "updatedAt":  "2026-11-01T10:58:52.517469970Z",
+  "userFacing":  true
+}

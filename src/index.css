@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* Typography */
+  .font-display {
+    font-family: 'Bricolage Grotesque', 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .font-serif-luxury {
+    font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .font-sora {
+    font-family: 'Sora', 'Rubik', sans-serif;
+  }
+  .font-code {
+    font-family: 'JetBrains Mono', 'Space Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .font-mono-space {
+    font-family: 'Space Mono', 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .font-rubik {
+    font-family: 'Rubik', sans-serif;
+  }
+  .font-hanken {
+    font-family: 'Hanken Grotesk', sans-serif;
+  }
+
+  /* Deep Space Obsidian Canvas */
+  .clay-obsidian-bg {
+    background-color: #05050A;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(112, 214, 255, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.04) 0%, transparent 60%);
+  }
+
+  /* Soft, Tactile, High-Depth Claymorphic Card */
+  .clay-card-3d {
+    background: linear-gradient(155deg, rgba(22, 17, 38, 0.92) 0%, rgba(11, 8, 22, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+      0 16px 36px -10px rgba(0, 0, 0, 0.85),
+      0 0 1px 1px rgba(255, 255, 255, 0.05),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -3px 6px rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(16px);
+    border-radius: 1.5rem;
+  }
+
+  .clay-card-3d-hover {
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .clay-card-3d-hover:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 215, 0, 0.35);
+    box-shadow: 
+      0 20px 42px -10px rgba(0, 0, 0, 0.9),
+      0 0 20px rgba(255, 215, 0, 0.15),
+      inset 0 2px 4px rgba(255, 255, 255, 0.25),
+      inset 0 -3px 6px rgba(0, 0, 0, 0.65);
+  }
+
+  /* The Master Left Control Box Styling */
+  .clay-control-box {
+    background: linear-gradient(170deg, #16102B 0%, #0D091B 50%, #06040C 100%);
+    border: 2px solid rgba(168, 85, 247, 0.28);
+    box-shadow: 
+      0 20px 50px -10px rgba(0, 0, 0, 0.95),
+      0 0 25px rgba(168, 85, 247, 0.12),
+      inset 0 3px 6px rgba(255, 255, 255, 0.22),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.7);
+    border-radius: 2rem;
+  }
+
+  /* Tactile 3D Claymorphic Push Buttons */
+  .clay-btn-gold {
+    background: linear-gradient(135deg, #FFE44D 0%, #FFD700 50%, #D9A800 100%);
+    color: #0A0714;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 6px 0px #997500,
+      0 10px 20px rgba(0, 0, 0, 0.6),
+      inset 0 2px 3px rgba(255, 255, 255, 0.5),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clay-btn-gold:active {
+    transform: translateY(4px);
+    box-shadow: 
+      0 2px 0px #997500,
+      0 4px 10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .clay-btn-red {
+    background: linear-gradient(135deg, #FF4D73 0%, #FF2A55 50%, #CC1038 100%);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+      0 6px 0px #80001B,
+      0 10px 20px rgba(255, 42, 85, 0.3),
+      inset 0 2px 3px rgba(255, 255, 255, 0.45),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clay-btn-red:active {
+    transform: translateY(4px);
+    box-shadow: 
+      0 2px 0px #80001B,
+      0 4px 10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .clay-btn-blue {
+    background: linear-gradient(135deg, #8FE0FF 0%, #70D6FF 50%, #30A8DE 100%);
+    color: #051424;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 6px 0px #18688F,
+      0 10px 20px rgba(112, 214, 255, 0.3),
+      inset 0 2px 3px rgba(255, 255, 255, 0.5),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clay-btn-blue:active {
+    transform: translateY(4px);
+    box-shadow: 
+      0 2px 0px #18688F,
+      0 4px 10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .clay-btn-green {
+    background: linear-gradient(135deg, #33FF85 0%, #00FF66 50%, #00B344 100%);
+    color: #031F0F;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 6px 0px #006626,
+      0 10px 20px rgba(0, 255, 102, 0.3),
+      inset 0 2px 3px rgba(255, 255, 255, 0.5),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clay-btn-green:active {
+    transform: translateY(4px);
+    box-shadow: 
+      0 2px 0px #006626,
+      0 4px 10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .clay-btn-purple {
+    background: linear-gradient(135deg, #C58BFF 0%, #A855F7 50%, #7E22CE 100%);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+      0 6px 0px #4C1185,
+      0 10px 20px rgba(168, 85, 247, 0.3),
+      inset 0 2px 3px rgba(255, 255, 255, 0.45),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clay-btn-purple:active {
+    transform: translateY(4px);
+    box-shadow: 
+      0 2px 0px #4C1185,
+      0 4px 10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  /* Tactile Dark Clay Navigation Button */
+  .clay-nav-btn {
+    background: linear-gradient(145deg, rgba(30, 22, 50, 0.85) 0%, rgba(15, 11, 26, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.15),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .clay-nav-btn:hover {
+    border-color: rgba(112, 214, 255, 0.4);
+    background: linear-gradient(145deg, rgba(40, 30, 68, 0.9) 0%, rgba(20, 15, 36, 0.98) 100%);
+    transform: translateX(3px);
+  }
+  .clay-nav-btn-active {
+    background: linear-gradient(145deg, rgba(168, 85, 247, 0.28) 0%, rgba(112, 214, 255, 0.2) 100%);
+    border: 1.5px solid #FFD700;
+    box-shadow: 
+      0 0 16px rgba(255, 215, 0, 0.25),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+    transform: translateX(4px);
+  }
+
+  /* Neon Signal Badges */
+  .badge-gold {
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    color: #FFD700;
+  }
+  .badge-red {
+    background: rgba(255, 42, 85, 0.12);
+    border: 1px solid rgba(255, 42, 85, 0.45);
+    color: #FF2A55;
+  }
+  .badge-blue {
+    background: rgba(112, 214, 255, 0.12);
+    border: 1px solid rgba(112, 214, 255, 0.45);
+    color: #70D6FF;
+  }
+  .badge-green {
+    background: rgba(0, 255, 102, 0.12);
+    border: 1px solid rgba(0, 255, 102, 0.45);
+    color: #00FF66;
+  }
+  .badge-purple {
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    color: #C084FC;
+  }
+
+  /* Compatibility Fallback utilities */
+  .cockpit-canvas { background-color: #05050A; }
+  .cockpit-card {
+    background: linear-gradient(155deg, rgba(22, 17, 38, 0.92) 0%, rgba(11, 8, 22, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    border-radius: 1.5rem;
+  }
+  .sophisticated-card {
+    background: linear-gradient(155deg, rgba(22, 17, 38, 0.92) 0%, rgba(11, 8, 22, 0.98) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.85);
+    border-radius: 1.5rem;
+  }
+  .gold-gradient-text {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFD700 45%, #FF66C4 80%, #70D6FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gold-gradient-bg {
+    background: linear-gradient(135deg, #FFE44D 0%, #FFD700 50%, #D9A800 100%);
+    color: #0A0714;
+  }
+  .nano-card {
+    background: linear-gradient(155deg, rgba(22, 17, 38, 0.92) 0%, rgba(11, 8, 22, 0.98) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 1.5rem;
+  }
+}
+
+/* Custom Minimalist Dark Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #05050A;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(168, 85, 247, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 215, 0, 0.6);
+}
+
+/* Print Styles for Simulated PDF Audit Reports */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  header, nav, aside, button, .no-print {
+    display: none !important;
+  }
+}

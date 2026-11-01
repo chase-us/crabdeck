@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for Copilot Fusion and the Multi-Model Routing Matrix. Covers the 1,200ms dynamic latency circuit breaker, single/cascade/critique routing patterns, sovereign Le Chonk quantization matrix (Q5_K_M, Q4_K_M, IQ3_XXS), and honest HTTP 503 fallback mechanisms.",
+  "updatedAt":  "2026-11-01T10:57:05.951333286Z",
+  "userFacing":  true
+}

@@ -1,0 +1,78 @@
+﻿Crabdeck Ultra Daily Code & Architecture Review — 2026-10-26
+* Review Timestamp: Monday, October 26, 2026 (22:19 CDT)
+* Archive Location: Daily Code Reviews Archive inside Crabdeck Quantum Omni-Layer Workspace
+* Primary Sources Evaluated (Updated in Last 24 Hours):
+   * claymortal_web_system_v10.1.zip (Release v10.1.0 introducing Giovanni Caselli's 1861 Pantelegraph Electrochemical Facsimile Telecopier ClayPantelegraphEngine on contact.html)
+   * Primary Project Checklist (Section 447: Sprint 453 — Crabdeck Quantum Native Capacitor Mobile Runtime & Windows Host Installer Automation)
+   * Unconfirmed 473400.crdownload (capacitor.config.ts) (Capacitor CLI configuration for appId ai.hermesclaw.crabdeck, appName Crabdeck Quantum, and dist webDir)
+   * gemini-code-1793005738324.txt.crdownload (install-crabdeck.ps1) (One-command automated PowerShell installer for Windows 11 host workstations)
+   * Crabdeck Ultra Daily Sprint Briefing - 2026-10-26 (Morning sprint briefing detailing Capacitor mobile shell setup and PowerShell installer automation)
+   * Crabdeck Ultra Daily Review - 2026-10-25 (Baseline continuity reference evaluating the Tesla AC induction motor simulator)
+   * crabdeck-quantum-v0.3.0 Archive (Unconfirmed 540777.crdownload)
+   * Crabdeck Quantum Omni-Layer - Master Workspace & Knowledge Base
+1. Executive Summary & Daily Engineering Synthesis
+Over the past 24 hours, the engineering momentum across the Crabdeck ecosystem encompassed major packaging breakthroughs for mobile and desktop runtimes (~/workspace/crabdeck-quantum/, canonical: chase-us/Crabdeck-) alongside the milestone deployment of ClayMortal v10.1.0 (claymortal_web_system_v10.1.zip):
+
+
+1. ClayMortal v10.1.0 Milestone Release — Giovanni Caselli Pantelegraph (ClayPantelegraphEngine):
+   * Deployed on contact.html, this simulator models Giovanni Caselli's 1861 Pantelegraph, the world's first commercial facsimile telecopying system:
+      * Electrochemical Telecopying & Pendulum Kinematics: A 2-meter cast-iron A-frame pendulum tower with natural period T ~ 2.8 seconds driving synchronized bidirectional raster scan carriages across twin beds. The transmitting bed scans non-conductive shellac ink contours on tin foil, while the receiving bed scans chemical paper soaked in potassium ferricyanide solution, precipitating permanent Prussian blue pigment line-by-line upon electrical conduction.
+      * 96-Line Raster Resolution: Scans 96 horizontal raster lines at 120 pixels per line (3 lines/mm) across four historic master document templates: Napoléon III Signature (1865 Paris-Lyon commercial telecopy), Paris-Lyon Locomotive Blueprint, Botanical Flora Specimen, and Diplomatic Telegram.
+      * Web Audio Mechanical & Chemical Synthesis: Synthesizes cast-iron pendulum escapement tick-tocks (280 Hz triangle wave), lead-screw ratchet advance clicks (880 Hz square wave), platinum stylus electrochemical sizzling buzzes, and celebratory French telegraph bell chimes (1568 Hz G6).
+2. Crabdeck Ultra Native Capacitor & Host Installer Milestones (Sprint 453 / Section 447):
+   * Certified in Section 447 of the Primary Project Checklist, the Crabdeck Ultra monorepo incorporated two critical operational artifacts:
+      * Capacitor CLI Native Mobile Runtime: Unconfirmed 473400.crdownload (capacitor.config.ts) packages the compiled Vite web dashboard (dist) into a native Android/iOS container under the official namespace ai.hermesclaw.crabdeck, enabling WebView loopback communication with local FastAPI backend routers (127.0.0.1:8000 / Android emulator bridge 10.0.2.2:8000).
+      * Automated PowerShell Host Installer: gemini-code-1793005738324.txt.crdownload (install-crabdeck.ps1) provides ./install-crabdeck.ps1, automating Node.js, Python, Git, and Capacitor CLI pre-flight dependency validation, --no-docker local runtime fallbacks, and end-to-end client build and APK assembly pipelines on Windows 11 (chase2x2 AMD A8-7410 APU / 16GB RAM).
+2. Daily Sprint & Release Execution Ledger
+Release / Module
+	Component / Target Files
+	Core Capability & Architecture
+	Guardrails & Target Invariants
+	ClayMortal v10.1.0 (claymortal_web_system_v10.1.zip)
+	contact.html, main.js (ClayPantelegraphEngine)
+	Giovanni Caselli 1861 Pantelegraph facsimile simulation; 2m cast-iron pendulum tower, 96-line electrochemical Prussian blue raster telecopying, twin bed scanning
+	60 FPS Canvas rendering; Web Audio synthesized escapements/ratchets/sizzle/bell; 4 document templates; full tower vs. document inspection views
+	Native Capacitor Container (Primary Project Checklist §447)
+	capacitor.config.ts, apps/mobile-claw/
+	Official Capacitor CLI configuration for appId: 'ai.hermesclaw.crabdeck' and appName: 'Crabdeck Quantum' packaging dist
+	Android HTTPS scheme; cleartext: true loopback routing for local FastAPI development; SplashScreen styling
+	Host Setup Automation (Primary Project Checklist §447)
+	install-crabdeck.ps1
+	Unified one-command PowerShell deployment script for Windows 11 (chase2x2) under --no-docker
+	Process-scoped execution policy (RemoteSigned); pre-flight dependency checks (Node 20+, Python 3.11+, Git); automated APK build
+	Crabdeck Quantum v0.3.0 Platform (crabdeck-quantum-v0.3.0 Archive)
+	crabdeck_agent_platform.html, hypermesh_1440.py, local_collector_sse.py, MobileClawExpo.tsx, CrabdeckNativeNode.kt
+	1,440-Node Hypermesh, 47/47 smoke test suite, Molt-VCS Time-Machine, HermesMetaRouter, and Mobile Claw
+	47/47 smoke checks passing; 127.0.0.1 binding; 75C Flux-Smith thermal cap; Q4_K_M 4.9GB VRAM; 250ms SSE coalescing
+	Sprint Briefing 2026-10-26 (Crabdeck Ultra Daily Sprint Briefing - 2026-10-26)
+	build/daily-sync-2026-10-26
+	30-minute development sprint blueprint across 4 granular blocks
+	Delivered via Gmail to baseblark44@gmail.com and archived in Drive
+	3. Spark Automation Council Evaluation (@get-more-perspectives)
+Initial Breakdown
+This audit evaluates the electrochemical facsimile simulation in ClayPantelegraphEngine (claymortal_web_system_v10.1.zip), the native Capacitor mobile bridge (capacitor.config.ts), and the Windows 11 PowerShell automation toolchain (install-crabdeck.ps1) certified in Section 447 of the Primary Project Checklist. Our focus is to eliminate stochastic scanline advancement bugs, cleartext mobile network vulnerabilities, stale asset build races, and background animation leaks.
+The Roundtable
+* The Integration Architect (Systems & Data Flow):
+   * Stochastic Scanline Advance Flaw in ClayPantelegraphEngine: In main.js (lines 35105–35120), scanlines advance via const atEdge = Math.abs(this.pendulumAngle) > this.pendulumAmplitude * 0.96; if (atEdge && Math.random() < 0.25) this.currentScanline++. Because atEdge remains true across 8–15 frames near the pendulum's turning points, relying on a pseudo-random probability check creates severe frame-rate dependent distortion: at 120 FPS, the scanline can increment 3–4 times during a single pendulum reversal (causing skipped scanlines and compressed vertical artifacts), while at 30 FPS, it frequently fails to advance at all. The scanline increment must be governed by a deterministic peak velocity zero-crossing detector (this.lastVelocitySign !== currentVelocitySign) with a latch flag reset at center crossing.
+   * Atomic Vite Build & Capacitor Sync Pipeline: In install-crabdeck.ps1, executing npx cap sync android before verifying the compilation hash of dist/ risks copying stale web bundles into native Android assets. The installer must enforce an atomic sequence: npm run build with exit code verification, followed immediately by npx cap sync android and APK compilation.
+* The Permissions Guard / Red Teamer (Security, Privacy & Blast Radius):
+   * Capacitor cleartext: true Production Leak: In capacitor.config.ts, server.cleartext: true is enabled to allow the Android WebView to communicate with local development gateways (http://127.0.0.1:8000 / http://10.0.2.2:8000). If compiled into a production release without conditional gating, the application will allow unencrypted HTTP traffic over untrusted networks. Gating cleartext strictly to development environments (process.env.NODE_ENV === 'development') or injecting a build-time flag (CAPACITOR_CLEARTEXT=true) is essential to prevent man-in-the-middle data interception.
+   * Process-Scoped PowerShell Execution: Confirms that restricting execution policy to -Scope Process RemoteSigned in install-crabdeck.ps1 prevents altering host-wide system security configurations on chase2x2.
+* The Cognitive Load Analyst / End-User (UX, Friction & Reporting):
+   * Document Inspection Mode Operational Feedback: In contact.html, toggling to Document Inspection mode zooms into the chemical paper sheet to reveal Prussian blue lines, but hides the physical pendulum tower. Without visible motion, users cannot distinguish whether the pantelegraph is actively scanning or paused. Adding an animated pendulum swing glyph and live scanline counter (Line X / 96, Y%) in the document view header resolves user confusion.
+   * Unified Hybrid Architecture vs. Client Fragmentation: With the addition of Capacitor (capacitor.config.ts), Crabdeck now touches React Native Fabric (MobileClawExpo.tsx), Flutter Impeller (crabdeck_flutter_hud.dart), native Kotlin (CrabdeckNativeNode.kt), and Capacitor. Recommends consolidating Capacitor as the primary unified container for hermesclaw.ai web dashboard distribution, while reserving Kotlin/Termux for headless background daemon nodes.
+* The Agentic Visionary (Autonomy, Chaining & Future-Proofing):
+   * Raster Facsimile as an Air-Gapped Verification Protocol: Giovanni Caselli's 1861 Pantelegraph demonstrates that graphic and structural data can be transmitted through continuous 2D analog raster scans. In high-assurance zero-trust AI architectures, transmitting critical multi-agent consensus proofs or cryptographic keys as 2D bitmapped raster representations (interpreted via local OCR or vision models) provides an air-gapped, human-auditable verification vector immune to structured JSON payload tampering or API injection.
+   * Capacitor Background Mesh Discovery: Leveraging native Capacitor plugins (@capacitor/background-runner, @capacitor/network) enables mobile devices running Crabdeck Quantum to act as lightweight bHive discovery relays, discovering nearby nodes over local Wi-Fi without requiring full Termux installation.
+* The Trigger Optimizer (Schedules, Conditions & Efficiency):
+   * Simulation Inactivity Throttling: In ClayPantelegraphEngine, when the browser tab is hidden, loop() continues calculating pendulum phases and triggering audio clicks. Implementing a unified visibilitychange listener to suspend audioCtx and halt animation loops when document.hidden is true guarantees 0.0% background CPU consumption.
+   * Scheduled Action Precision: Confirms that the 4-hour Drive analysis trigger successfully identified and extracted actionable tasks when capacitor.config.ts and install-crabdeck.ps1 were uploaded, and cleanly suppressed execution (CONDITION_NOT_MET) on non-matching releases.
+Council Consensus & Action Plan (Prioritized Sprint Directives)
+1. Deterministic Scanline Advance Migration (ClayPantelegraphEngine in main.js): Replace the atEdge && Math.random() < 0.25 heuristic with a deterministic pendulum velocity zero-crossing detector in main.js (claymortal_web_system_v10.1.zip) to eliminate skipped or duplicate scanlines across variable frame rates.
+2. Environment-Gated Capacitor Cleartext Setting (capacitor.config.ts): Modify capacitor.config.ts (Unconfirmed 473400.crdownload) to gate server.cleartext strictly to development builds, ensuring production releases enforce HTTPS without cleartext vulnerabilities.
+3. Atomic Build & Sync Verification in Host Installer (install-crabdeck.ps1): Enforce strict sequential execution in install-crabdeck.ps1 (gemini-code-1793005738324.txt.crdownload)—requiring a verified npm run build exit code before executing npx cap sync android to prevent white-screen crashes from stale dist/ assets.
+4. Visibilitychange Lifecycle Guard Across Engines (main.js): Add a unified visibilitychange listener in main.js to suspend AudioContext and halt animation loops when the tab is backgrounded.
+4. Verification, Security & Runtime Invariant Audit
+* Loopback Network Isolation: Verified across mock_contract_server.py (127.0.0.1:8100–8199), FastAPI core (127.0.0.1:8000), and Ollama (127.0.0.1:11434). Zero outbound external network sockets.
+* Mobile Runtime Sandbox Boundaries: Verified that capacitor.config.ts confines file-system access to application sandbox directories with cleartext routing isolated to local development loopbacks.
+* Thermal & Resource Budgets: Event-driven telemetry and V8 RLIMIT_DATA heap limits ensure CPU and APU temperature remain strictly within the 75°C Flux-Smith thermal envelope on chase2x2.

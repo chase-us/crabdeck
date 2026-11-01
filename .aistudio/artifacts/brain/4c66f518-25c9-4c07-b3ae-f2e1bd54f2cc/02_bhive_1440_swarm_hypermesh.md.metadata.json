@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the bHive 1,440-Node Swarm Hypermesh. Covers minute-slot allocation across 12 cognitive epochs, tri-role agent specialization (Architect, Weaver, Breaker), P2P gossip delta synchronization, and adaptive polling backoff.",
+  "updatedAt":  "2026-11-01T10:55:29.933051256Z",
+  "userFacing":  true
+}

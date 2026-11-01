@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the bHive Swarm Chat Room and Inter-Agent Dispatch Engine. Covers message contracts, Hermes v0.7.0 [ACK] terminal loopback supervisor, role negotiation threads, and persistent multi-agent collaboration logs.",
+  "updatedAt":  "2026-11-01T10:56:20.270847469Z",
+  "userFacing":  true
+}

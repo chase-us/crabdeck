@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Carbon SecAuditor & AST Patch Validation Engine. Covers ast.parse() syntax gating, CERTIFIED_AST_VALID vs REJECTED_INVALID_SYNTAX statuses, unified root-cause diff synthesis, Hob sandbox realpath directory traversal jail, and atomic rollback snapshots.",
+  "updatedAt":  "2026-11-01T10:56:36.311286334Z",
+  "userFacing":  true
+}

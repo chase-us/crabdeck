@@ -1,0 +1,244 @@
+﻿Crabdeck Ultra Daily Development Sprint Briefing — 2026-10-26
+* Date: Monday, October 26, 2026
+* Timestamp: 06:13 CDT
+* Author: @crabdeck-ultra-architect (Lead Autonomous System Agent)
+* Archive Location: Daily Sprint Briefings Archive inside Crabdeck Quantum Omni-Layer Workspace
+* Evaluated Artifacts & Context (Last 24 Hours):
+   * Primary Project Checklist (Section 447: Sprint 453 — Native Capacitor Mobile Runtime & Windows Host Installer Automation)
+   * Unconfirmed 473400.crdownload (capacitor.config.ts) (Capacitor CLI configuration for appId ai.hermesclaw.crabdeck, appName Crabdeck Quantum, and dist webDir)
+   * gemini-code-1793005738324.txt.crdownload (install-crabdeck.ps1) (One-command automated PowerShell installer for Windows 11 host workstations)
+   * Crabdeck Ultra Daily Review - 2026-10-25 (Nightly review evaluating Tesla motor induction slip, global visibility guards, and Win32 kill-on-close limits)
+   * claymortal_web_system_v10.0.zip (Release v10.0.0 introducing Nikola Tesla AC Induction Motor simulator ClayTeslaMotorEngine)
+   * crabdeck-quantum-v0.3.0 Archive (Unconfirmed 540777.crdownload)
+   * Crabdeck Quantum Omni-Layer - Master Workspace & Knowledge Base
+1. Executive Summary & System Momentum
+Over the previous 24 hours, the Crabdeck ecosystem advanced across critical native packaging milestones for mobile and desktop environments, certified in Section 447 (Sprint 453) of the Primary Project Checklist:
+
+
+1. Native Capacitor Mobile Container Integration: Newly added artifact Unconfirmed 473400.crdownload (capacitor.config.ts) introduces the native Capacitor CLI runtime configuration for the official application identifier ai.hermesclaw.crabdeck (Application Name: Crabdeck Quantum, Web Directory: dist). It establishes the Android HTTPS scheme with local cleartext loopback access to FastAPI backend routers (127.0.0.1:8000 / Android bridge 10.0.2.2:8000) and configures native splash screen scaling.
+2. PowerShell One-Command Host Installer Automation: Newly added artifact gemini-code-1793005738324.txt.crdownload (install-crabdeck.ps1) provides ./install-crabdeck.ps1, defining the unified local node deployment script for Windows 11 host workstations (chase2x2 AMD A8-7410 APU / 16GB RAM) running under the --no-docker execution strategy.
+3. Consensus Directive Continuity: Today's sprint operationalizes the directives synthesized in Crabdeck Ultra Daily Review - 2026-10-25, pairing the new Capacitor mobile shell with 250ms SSE delta frame coalescing, Windows Job Object orphan elimination, and full 47/47 smoke test certification.
+2. System Architecture & Priority Heatmap
+Subsystem / Layer
+	Component / Target File
+	Current Health
+	Sprint Priority
+	Immediate Objective
+	Mobile Runtime Shell
+	capacitor.config.ts, apps/mobile-claw/
+	Newly added; pending root monorepo sync
+	P0 (Critical)
+	Wire appId: 'ai.hermesclaw.crabdeck', webDir: 'dist', and Android cleartext loopback
+	Host Setup Script
+	install-crabdeck.ps1
+	Script referenced; needs validation
+	P0 (Critical)
+	Implement process-scoped execution policy, pre-flight dependency checks, and --no-docker routing
+	Telemetry Stream
+	backend_py/core/local_collector_sse.py
+	Operational; needs mobile bridge coalescing
+	P1 (High)
+	Lock in 250ms ring-buffer batching (max 4 fps) for /api/events
+	Smoke Suite
+	scripts/smoke.sh, scripts/disaster_recovery_reset.sh
+	47/47 Pre-launch ready
+	P2 (Verification)
+	Certify 47/47 evaluation assertions across mobile distribution assets
+	3. The 30-Minute Development Sprint Action Plan
+* Target Window: Exactly 30 Minutes
+* Hardware Profile: AMD A8-7410 APU / 16GB RAM (chase2x2 workstation running Windows 11 / WSL2 / Android Termux)
+* Core Invariants: 127.0.0.1 loopback binding, 0.0% idle CPU overhead, and <= 75 degrees C Flux-Smith thermal cap.
+Block 1: Capacitor CLI Mobile Runtime Configuration (Minutes 00–08)
+* Target File: capacitor.config.ts (Root / apps/mobile-claw/)
+* Task 1.1: Place and validate capacitor.config.ts in the monorepo root:
+   * Register appId: 'ai.hermesclaw.crabdeck', appName: 'Crabdeck Quantum', and webDir: 'dist'.
+   * Set server: { androidScheme: 'https', cleartext: true } so local WebView instances can route API requests directly to the loopback FastAPI gateway (http://127.0.0.1:8000 or Android emulator bridge http://10.0.2.2:8000).
+* Task 1.2: Configure SplashScreen plugin options: launchShowDuration: 2000, launchAutoHide: true, backgroundColor: '#05050a', showSpinner: false, androidSplashResourceName: 'splash', and androidScaleType: 'CENTER_CROP'.
+* Task 1.3: Verify that package.json includes @capacitor/cli, @capacitor/core, and @capacitor/android dependencies.
+
+
+import { CapacitorConfig } from '@capacitor/cli';
+
+
+const config: CapacitorConfig = {
+
+
+  appId: 'ai.hermesclaw.crabdeck',
+
+
+  appName: 'Crabdeck Quantum',
+
+
+  webDir: 'dist',
+
+
+  server: {
+
+
+    androidScheme: 'https',
+
+
+    cleartext: true
+
+
+  },
+
+
+  plugins: {
+
+
+    SplashScreen: {
+
+
+      launchShowDuration: 2000,
+
+
+      launchAutoHide: true,
+
+
+      backgroundColor: '#05050a',
+
+
+      showSpinner: false,
+
+
+      androidSplashResourceName: 'splash',
+
+
+      androidScaleType: 'CENTER_CROP'
+
+
+    }
+
+
+  }
+
+
+};
+
+
+export default config;
+Block 2: Automated PowerShell Host Installer Script (Minutes 08–16)
+* Target File: install-crabdeck.ps1
+* Task 2.1: Implement install-crabdeck.ps1 with process-scoped execution policy (Set-ExecutionPolicy -Scope Process RemoteSigned) to avoid modifying machine-wide Windows security settings on chase2x2.
+* Task 2.2: Add pre-flight validation checks for Node.js (v20+), Python (3.11+), Git, and Capacitor CLI. Each check must be wrapped in a robust try...catch block with clean ANSI terminal formatting.
+* Task 2.3: Implement the --no-docker flag routing to map environment variables directly to local binary runtimes and Ollama on 127.0.0.1:11434.
+* Task 2.4: Automate the end-to-end client build pipeline: npm run build (compiling React to dist/), followed by npx cap sync android and APK assembly.
+
+
+# install-crabdeck.ps1 — Crabdeck Host Workstation Automated Installer
+
+
+[CmdletBinding()]
+
+
+param (
+
+
+    [switch]$NoDocker,
+
+
+    [switch]$SkipMobile
+
+
+)
+
+
+$ErrorActionPreference = "Stop"
+
+
+Set-ExecutionPolicy -Scope Process RemoteSigned -Force
+
+
+Write-Host "==> Initializing Crabdeck Quantum Host Setup Strategy..." -ForegroundColor Cyan
+
+
+function Assert-Dependency ($command, $name) {
+
+
+    if (-not (Get-Command $command -ErrorAction SilentlyContinue)) {
+
+
+        Write-Error "Missing required dependency: $name. Please install it before proceeding."
+
+
+        exit 1
+
+
+    }
+
+
+}
+
+
+Assert-Dependency "node" "Node.js v20+"
+
+
+Assert-Dependency "python" "Python 3.11+"
+
+
+Assert-Dependency "git" "Git SCM"
+
+
+if ($NoDocker) {
+
+
+    Write-Host "[CONFIG] Executing under --no-docker strategy. Binding to local loopback 127.0.0.1..." -ForegroundColor Yellow
+
+
+    $env:CRABDECK_NO_DOCKER = "1"
+
+
+    $env:OLLAMA_HOST = "127.0.0.1:11434"
+
+
+}
+
+
+Write-Host "==> Installing Node dependencies..." -ForegroundColor Green
+
+
+npm install
+
+
+Write-Host "==> Compiling Web Distribution Asset (dist/)..." -ForegroundColor Green
+
+
+npm run build
+
+
+if (-not $SkipMobile) {
+
+
+    Write-Host "==> Syncing Capacitor Native Android Platform..." -ForegroundColor Green
+
+
+    npx cap sync android
+
+
+}
+
+
+Write-Host "==> Host Setup Completed Successfully." -ForegroundColor Cyan
+Block 3: Dual-Runtime Mobile Claw State & SSE Telemetry Bridging (Minutes 16–23)
+* Target Files: apps/mobile-claw/MobileClawExpo.tsx, apps/mobile-claw/android/CrabdeckNativeNode.kt, backend_py/core/local_collector_sse.py
+* Task 3.1: Synchronize the Capacitor mobile web container with the existing React Native Fabric client (MobileClawExpo.tsx) and native Kotlin node (CrabdeckNativeNode.kt in package ai.hermesclaw.crabdeck).
+* Task 3.2: Connect the Capacitor WebView state to the 250ms coalesced /api/events SSE telemetry stream from backend_py/core/local_collector_sse.py.
+* Task 3.3: Confirm that all database connections to data/crabdeck_local.db execute PRAGMA journal_mode=WAL; and PRAGMA busy_timeout=5000; on initialization, eliminating lock contention between 5s telemetry writes and Hypermesh commits.
+Block 4: End-to-End Verification & 47/47 Smoke Run (Minutes 23–30)
+* Target Files: scripts/smoke.sh, scripts/disaster_recovery_reset.sh
+* Task 4.1: Run bash scripts/smoke.sh (or ./scripts/smoke.ps1 on Windows 11) to certify all 47 evaluation assertions:
+   * 30/30 FastAPI router tests (Ports 8000 & 3001)
+   * 5/5 Claw guardrail validations (process_jail, tool_mutex, socket_firewall, workspace_sandbox, mock_contract_server)
+   * 7/7 1,440-node Hypermesh & storage checks (crabdeck_local.db, telemetry_samples, health_events, Molt-VCS DAG)
+   * 5/5 Loopback and thermal watchdog checks (Binding 127.0.0.1, APU temp < 75 degrees C)
+* Task 4.2: Commit the verified changes:
+git commit -m "feat(mobile): add capacitor runtime config and win32 install script"
+4. Operational Invariants & Verification Checklist
+   * capacitor.config.ts properly registered with appId: 'ai.hermesclaw.crabdeck' and cleartext: true for development.
+   * install-crabdeck.ps1 execution policy verified restricted to process scope (-Scope Process RemoteSigned).
+   * Pre-flight dependency validation traps missing tools with direct remediation links.
+   * Capacitor mobile shell successfully connects to loopback /api/events SSE stream without bridge lag.
+   * Local loopback strictly verified on 127.0.0.1 with zero external network leaks.
+   * All 47/47 evaluation assertions in scripts/smoke.sh return PASS with 0 failures and 0 warnings.
+   * Thermal ceiling capped strictly below 75 degrees C on chase2x2 APU.

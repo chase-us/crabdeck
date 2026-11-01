@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for Google Drive and Google Picker Workspace integration. Details 1P OAuth configuration with Firebase Auth, zero-leak in-memory access token caching, Google Picker client-side dialog with ancestor origin calculation, Drive API v3 operations, and mandatory user confirmation for destructive actions.",
+  "updatedAt":  "2026-11-01T11:26:35.423618121Z",
+  "userFacing":  true
+}

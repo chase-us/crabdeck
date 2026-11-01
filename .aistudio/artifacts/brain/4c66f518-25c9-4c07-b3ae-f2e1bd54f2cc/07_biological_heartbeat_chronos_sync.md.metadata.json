@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Biological Heartbeat and 4-Phase Chronos-Sync Telemetry. Covers the four cardiac phases (Systole, Flow, Diastole, Return) in megabrain_pump.py, the 75°C Flux-Smith APU thermal governor, socket hot-patching, and live EKG telemetry.",
+  "updatedAt":  "2026-11-01T10:57:20.649090185Z",
+  "userFacing":  true
+}

@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for Frictionless Onboarding and Multi-Runtime Host Deployment. Details the automated Windows 11 PowerShell installer (install-crabdeck.ps1), Docker Compose container stack, native --no-docker fallback, Android Termux setup, and 4-stage disaster recovery runbook.",
+  "updatedAt":  "2026-11-01T10:59:08.720323156Z",
+  "userFacing":  true
+}

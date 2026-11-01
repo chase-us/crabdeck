@@ -1,0 +1,242 @@
+﻿Crabdeck Ultra Daily Development Sprint Briefing — 2026-10-27
+* Date: Tuesday, October 27, 2026
+* Timestamp: 06:37 CDT
+* Author: @crabdeck-ultra-architect (Lead Autonomous System Agent)
+* Archive Location: Daily Sprint Briefings Archive inside Crabdeck Quantum Omni-Layer Workspace
+* Evaluated Artifacts & Context (Last 24 Hours):
+   * Crabdeck Ultra Daily Review - 2026-10-26 (Nightly review evaluating Giovanni Caselli Pantelegraph simulation, Capacitor cleartext security, and atomic build pipelines)
+   * claymortal_web_system_v10.1.zip (Release v10.1.0 introducing Giovanni Caselli 1861 Pantelegraph Electrochemical Facsimile Telecopier on contact.html)
+   * Primary Project Checklist (Section 447: Sprint 453 — Native Capacitor Mobile Runtime & Windows Host Installer Automation)
+   * Unconfirmed 473400.crdownload (capacitor.config.ts) (Capacitor CLI configuration for appId ai.hermesclaw.crabdeck, appName Crabdeck Quantum, and dist webDir)
+   * gemini-code-1793005738324.txt.crdownload (install-crabdeck.ps1) (One-command automated PowerShell installer for Windows 11 host workstations)
+   * Crabdeck Ultra Daily Sprint Briefing - 2026-10-26
+   * Crabdeck Quantum Omni-Layer - Master Workspace & Knowledge Base
+1. Executive Summary & System Momentum
+Over the previous 24 hours, the Crabdeck ecosystem advanced across critical packaging and simulation domains within the monorepo (~/workspace/crabdeck-quantum/, canonical: chase-us/Crabdeck-) and the presentation release in claymortal_web_system_v10.1.zip:
+
+
+1. Giovanni Caselli Pantelegraph Simulation Deployment: ClayMortal v10.1.0 deployed the interactive 3D ClayPantelegraphEngine on contact.html, modeling an 1861 cast-iron A-frame pendulum tower (T ~ 2.8s) executing 96-line electrochemical raster scanning to precipitate permanent Prussian blue facsimile marks across historic master templates (Napoléon III signature, locomotive blueprints, botanical specimens).
+2. Capacitor Mobile Container & Windows Host Installer Certification: Certified in Section 447 (Sprint 453) of the Primary Project Checklist, integrating Unconfirmed 473400.crdownload (capacitor.config.ts) under the official identifier ai.hermesclaw.crabdeck alongside the one-command installer gemini-code-1793005738324.txt.crdownload (install-crabdeck.ps1).
+3. Consensus Directive Operationalization: Last night's Spark Automation Council review in Crabdeck Ultra Daily Review - 2026-10-26 established four immediate technical priorities for today's 30-minute sprint:
+   * Environment-Gated Capacitor Cleartext: Dynamically gate server.cleartext in capacitor.config.ts so local development routes to loopback (127.0.0.1:8000 / 10.0.2.2:8000) while production release APKs strictly enforce HTTPS.
+   * Atomic Build-Before-Sync Pipeline: Update install-crabdeck.ps1 to require an exit code assertion on npm run build prior to running npx cap sync android, preventing white-screen crashes from uncompiled dist/ directories.
+   * Deterministic Pantelegraph Raster Advancement: Replace the atEdge && Math.random() < 0.25 heuristic in main.js with a deterministic pendulum velocity zero-crossing detector to eliminate frame-rate dependent scanline distortion.
+   * Full 47/47 Smoke Test Certification: Certify all 47 evaluation assertions across the compiled Capacitor mobile distribution assets.
+2. System Architecture & Priority Heatmap
+Subsystem / Layer
+	Component / Target File
+	Current Health
+	Sprint Priority
+	Immediate Objective
+	Mobile Runtime Shell
+	capacitor.config.ts, apps/mobile-claw/
+	Operational; needs env-gated cleartext
+	P0 (Critical)
+	Gate server.cleartext strictly to development (NODE_ENV === 'development')
+	Host Setup Script
+	install-crabdeck.ps1
+	Operational; needs atomic build check
+	P0 (Critical)
+	Wrap npm run build in exit-code assertion before executing npx cap sync android
+	Canvas Pantelegraph Engine
+	contact.html, main.js (ClayPantelegraphEngine)
+	Operational; stochastic line advance flaw
+	P1 (High)
+	Replace random check with deterministic velocity zero-crossing detector & add visibility guard
+	Smoke Suite
+	scripts/smoke.sh, scripts/disaster_recovery_reset.sh
+	47/47 Pre-launch ready
+	P2 (Verification)
+	Certify full 47/47 smoke test suite across mobile distribution assets
+	3. The 30-Minute Development Sprint Action Plan
+* Target Window: Exactly 30 Minutes
+* Hardware Profile: AMD A8-7410 APU / 16GB RAM (chase2x2 workstation running Windows 11 / WSL2 / Android Termux)
+* Core Invariants: 127.0.0.1 loopback binding, 0.0% idle CPU overhead, and <= 75 degrees C Flux-Smith thermal cap.
+Block 1: Capacitor Environment-Gated Cleartext & Monorepo Root Sync (Minutes 00–08)
+* Target File: capacitor.config.ts (Root / apps/mobile-claw/)
+* Task 1.1: Update capacitor.config.ts to gate server.cleartext dynamically:
+
+
+import { CapacitorConfig } from '@capacitor/cli';
+
+
+const isDev = process.env.NODE_ENV === 'development';
+
+
+const config: CapacitorConfig = {
+
+
+  appId: 'ai.hermesclaw.crabdeck',
+
+
+  appName: 'Crabdeck Quantum',
+
+
+  webDir: 'dist',
+
+
+  server: {
+
+
+    androidScheme: 'https',
+
+
+    cleartext: isDev,
+
+
+  },
+
+
+  plugins: {
+
+
+    SplashScreen: {
+
+
+      launchShowDuration: 2000,
+
+
+      launchAutoHide: true,
+
+
+      backgroundColor: '#05050a',
+
+
+      showSpinner: false,
+
+
+      androidSplashResourceName: 'splash',
+
+
+      androidScaleType: 'CENTER_CROP',
+
+
+    },
+
+
+  },
+
+
+};
+
+
+export default config;
+
+
+* Task 1.2: Validate that production builds (NODE_ENV === 'production') emit cleartext: false to ensure HTTPS enforcement across public Wi-Fi networks.
+Block 2: Host Installer Atomic Build Guard & Dependency Traps (Minutes 08–16)
+* Target File: install-crabdeck.ps1
+* Task 2.1: In install-crabdeck.ps1, enforce an atomic build sequence:
+l
+Write-Host "[*] Compiling Vite web dashboard..." -FG Cyan
+npm run build
+if ($LASTEXITCODE -ne 0) {
+Write-Error "[-] Web compilation failed. Halting Capacitor Android synchronization."
+exit $LASTEXITCODE
+}
+Write-Host "[+] Web assets compiled to dist/. Synchronizing Capacitor Android container..." -FG Green
+npx cap sync android
+
+
+* **Task 2.2:** Verify that the script executes under `-Scope Process RemoteSigned` on Windows 11 (`chase2x2`), preventing modification of machine-wide execution policies.
+
+
+* **Task 2.3:** Test dependency pre-flight checks under `--no-docker`, confirming Node.js (v20+), Python (3.11+), Git, and Capacitor CLI resolve cleanly with formatted console tables.
+
+
+### Block 3: Pantelegraph Deterministic Raster Kinematics & Visibility Guard (Minutes 16–23)
+
+
+* **Target Files:** `contact.html`, `main.js` (`ClayPantelegraphEngine`)
+
+
+* **Task 3.1:** In `main.js` (lines 35105–35120), replace the stochastic advance check:
+
+
+```javascript
+
+
+// Deterministic Apex Edge Detector
+
+
+const currentVel = Math.cos(this.pendulumPhase);
+
+
+const currentVelSign = Math.sign(currentVel);
+
+
+if (this.lastVelocitySign !== 0 && currentVelSign !== this.lastVelocitySign) {
+
+
+    // Reversal occurred at swing apex
+
+
+    if (!this.hasAdvancedThisApex && this.isScanning && this.currentScanline < this.numScanlines) {
+
+
+        this.currentScanline++;
+
+
+        this.hasAdvancedThisApex = true;
+
+
+        this.playCarriageAdvance();
+
+
+        this.updateHUD();
+
+
+        if (this.currentScanline >= this.numScanlines) {
+
+
+            this.isScanning = false;
+
+
+            this.playCompleteChime();
+
+
+            this.updateHUD();
+
+
+        }
+
+
+    }
+
+
+}
+
+
+// Reset latch when passing through center (maximum velocity)
+
+
+if (Math.abs(this.pendulumAngle) < this.pendulumAmplitude * 0.15) {
+
+
+    this.hasAdvancedThisApex = false;
+
+
+}
+
+
+this.lastVelocitySign = currentVelSign;
+
+
+* Task 3.2: Attach a document.addEventListener('visibilitychange') listener: when document.hidden is true, pause requestAnimationFrame and call this.audioCtx.suspend(), guaranteeing 0.0% background CPU consumption.
+Block 4: End-to-End Verification & 47/47 Smoke Run (Minutes 23–30)
+* Target Files: scripts/smoke.sh, scripts/disaster_recovery_reset.sh
+* Task 4.1: Run bash scripts/smoke.sh (or ./scripts/smoke.ps1 on Windows 11) to certify all 47 evaluation assertions:
+   * 30/30 FastAPI router tests (Ports 8000 & 3001)
+   * 5/5 Claw guardrail validations (process_jail, tool_mutex, socket_firewall, workspace_sandbox, mock_contract_server)
+   * 7/7 1,440-node Hypermesh & storage checks (crabdeck_local.db, telemetry_samples, health_events, Molt-VCS DAG)
+   * 5/5 Loopback and thermal watchdog checks (Binding 127.0.0.1, APU temp < 75 degrees C)
+* Task 4.2: Commit the verified changes:
+git commit -m "feat(mobile): gate capacitor cleartext, add atomic build guard, and deterministic pantelegraph kinematics"
+4. Operational Invariants & Verification Checklist
+   * capacitor.config.ts dynamically evaluates server.cleartext: isDev, enforcing HTTPS on production builds.
+   * install-crabdeck.ps1 verifies npm run build success before invoking npx cap sync android.
+   * ClayPantelegraphEngine scanline advancement verified deterministic across 60 FPS and 120 FPS display modes.
+   * Background tab visibility listener verified to suspend Web Audio and halt canvas rendering (0.0% idle CPU).
+   * Local loopback strictly verified on 127.0.0.1 with zero external network leaks.
+   * All 47/47 evaluation assertions in scripts/smoke.sh return PASS with 0 failures and 0 warnings.
+   * Thermal ceiling capped strictly below 75 degrees C on chase2x2 APU.

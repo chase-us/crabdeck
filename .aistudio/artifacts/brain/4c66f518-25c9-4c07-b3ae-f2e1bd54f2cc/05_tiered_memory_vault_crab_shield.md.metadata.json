@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Tiered Memory Vault (Shell Cracked / CRAB-SHIELD). Details the Hot State SQLite WAL logging, Redis 7 cache, Cold State ChromaDB vector search and sqlite-vec embeddings, Neo4j knowledge graph, and anti-amnesia context pruning.",
+  "updatedAt":  "2026-11-01T10:56:50.173400286Z",
+  "userFacing":  true
+}

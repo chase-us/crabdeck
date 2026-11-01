@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for Megabrain Core Overclock and QUBO Quantum Optimization. Details high-throughput context processing controls, FastAPI async queue gatekeeper, quantum-inspired annealing task allocation, and the <500MB idle RAM hardware envelope.",
+  "updatedAt":  "2026-11-01T10:57:31.942608714Z",
+  "userFacing":  true
+}

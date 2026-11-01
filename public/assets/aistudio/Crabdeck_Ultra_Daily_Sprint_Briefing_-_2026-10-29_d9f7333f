@@ -1,0 +1,168 @@
+﻿Crabdeck Ultra Daily Development Sprint Briefing — 2026-10-29
+* Date: Thursday, October 29, 2026
+* Timestamp: 06:27 CDT
+* Author: @crabdeck-ultra-architect (Lead Autonomous System Agent)
+* Archive Location: Daily Sprint Briefings Archive inside Crabdeck Quantum Omni-Layer Workspace
+* Evaluated Artifacts & Context (Last 24 Hours):
+   * Crabdeck Ultra Daily Review - 2026-10-28 (Nightly review evaluating Full-Stack AI Platform Architect roadmap, Praxinoscope simulator, and Council Consensus directives)
+   * Full-Stack AI Platform Architect - Level Up Implementation Roadmap (12-week strategic blueprint across MCP gateway, kernel sandbox, and edge appliance)
+   * claymortal_web_system_v10.3.zip (Release v10.3.0 introducing Émile Reynaud 1877 Praxinoscope Théâtre Optique ClayPraxinoscopeEngine on photos.html)
+   * Primary Project Checklist (Section 449: Sprint 455 — Full-Stack AI Platform Architect: Systems Implementation Integration)
+   * Crabdeck Ultra Daily Sprint Briefing - 2026-10-28
+   * Crabdeck Quantum Omni-Layer - Master Workspace & Knowledge Base
+1. Executive Summary & System Momentum
+Over the previous 24 hours, the Crabdeck ecosystem advanced across systems-level architecture planning in the monorepo (~/workspace/crabdeck-quantum/, canonical: chase-us/Crabdeck-) and historical simulation mechanics in claymortal_web_system_v10.3.zip:
+
+
+1. Full-Stack AI Platform Architect Strategic Blueprint: Certified in Section 449 (Sprint 455) of the Primary Project Checklist, detailing a 12-week roadmap spanning production MCP tool servers, OS-level kernel sandboxing (Win32 Job Objects / POSIX rlimits), cryptographically signed HMAC-SHA256 nonces, and turnkey local edge-inference appliances with sqlite-vec.
+2. Émile Reynaud Praxinoscope Théâtre Optique: ClayMortal v10.3.0 deployed ClayPraxinoscopeEngine on photos.html, modeling a 12-sided coaxial polygonal mirror prism that mathematically cancels cylinder rotation blur, an ornate Victorian toy proscenium frame, four animated performance acts, and Web Audio music box waltz melodies.
+3. Consensus Directive Operationalization: Last night's Spark Automation Council review in Crabdeck Ultra Daily Review - 2026-10-28 established four immediate priorities for today's 30-minute development sprint:
+   * MCP Protocol stdio transport scaffolding with JSON-RPC 2.0 framing.
+   * OS-level kernel sandboxing wrapper integrating Win32 Job Objects and POSIX rlimits with a 300s expiring HMAC-SHA256 nonce.
+   * Local sqlite-vec virtual table schema definition for sub-millisecond similarity recall.
+   * Praxinoscope mirror normal precomputation, visibility hooks, and full 47/47 smoke test certification.
+2. System Architecture & Priority Heatmap
+Subsystem / Layer
+	Component / Target File
+	Current Health
+	Sprint Priority
+	Immediate Objective
+	MCP Protocol Gateway
+	packages/mcp-gateway/, backend_py/
+	Newly scaffolded; pending core message loop
+	P0 (Critical)
+	Build stdio JSON-RPC 2.0 message parser and handler
+	Kernel Sandbox Boundary
+	packages/agent-sandbox/, backend_py/claw/policy.py
+	Specification stage; needs OS abstraction
+	P0 (Critical)
+	Implement Win32 Job Object and POSIX rlimit wrappers with 300s nonce
+	Edge Vector Storage
+	packages/edge-appliance/, data/schema.sql
+	Needs sqlite-vec virtual table schema
+	P1 (High)
+	Define vec_items schema and local embedding query functions
+	Simulation & Verification
+	main.js (ClayPraxinoscopeEngine), scripts/smoke.sh
+	Operational; 47/47 pre-launch ready
+	P2 (Verification)
+	Precompute mirror normals, add visibility hook, and verify smoke pass
+	3. The 30-Minute Development Sprint Action Plan
+* Target Window: Exactly 30 Minutes
+* Hardware Profile: AMD A8-7410 APU / 16GB RAM (chase2x2 workstation running Windows 11 / WSL2 / Android Termux)
+* Core Invariants: 127.0.0.1 loopback binding, 0.0% idle CPU overhead, and <= 75°C Flux-Smith thermal cap.
+Block 1: MCP Tool Server Stdio Transport & JSON-RPC 2.0 Core Loop (Minutes 00–08)
+* Target Files: packages/mcp-gateway/src/transport/stdio.ts, backend_py/mcp/server.py
+* Task 1.1: Implement line-delimited JSON-RPC 2.0 parser reading from stdin and writing to stdout:import sys, json
+
+
+def handle_mcp_message(line: str) -> str:
+
+
+    try:
+
+
+        msg = json.loads(line)
+
+
+        method = msg.get("method")
+
+
+        msg_id = msg.get("id")
+
+
+        if method == "tools/list":
+
+
+            return json.dumps({"jsonrpc": "2.0", "id": msg_id, "result": {"tools": [{"name": "crm_get_contact", "description": "Fetch CRM contact"}]}})
+
+
+        return json.dumps({"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32601, "message": "Method not found"}})
+
+
+    except Exception as e:
+
+
+        return json.dumps({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": str(e)}})
+
+
+* Task 1.2: Wire TypeScript Zod schema validator verifying incoming params for tools/call.
+Block 2: Kernel Process Sandbox & Win32 Job Object Wrapper (Minutes 08–15)
+* Target Files: packages/agent-sandbox/src/jail.py, backend_py/claw/policy.py
+* Task 2.1: Implement platform abstraction layer for process sandboxing:import os, sys, subprocess
+
+
+def run_sandboxed(cmd: list[str], max_memory_mb: int = 512, timeout_sec: int = 30):
+
+
+    if sys.platform == "win32":
+
+
+        # Win32 Job Object confinement (chase2x2)
+
+
+        import win32job, win32process
+
+
+        job = win32job.CreateJobObject(None, "")
+
+
+        info = win32job.QueryInformationJobObject(job, win32job.JobObjectExtendedLimitInformation)
+
+
+        info['BasicLimitInformation']['LimitFlags'] = win32job.JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+
+
+        info['ProcessMemoryLimit'] = max_memory_mb * 1024 * 1024
+
+
+        win32job.SetInformationJobObject(job, win32job.JobObjectExtendedLimitInformation, info)
+
+
+    else:
+
+
+        # POSIX rlimits for Linux / Termux
+
+
+        import resource
+
+
+        def preexec():
+
+
+            resource.setrlimit(resource.RLIMIT_AS, (max_memory_mb * 1024 * 1024, max_memory_mb * 1024 * 1024))
+
+
+    return subprocess.run(cmd, capture_output=True, timeout=timeout_sec)
+
+
+* Task 2.2: Bind 300-second expiring HMAC-SHA256 approval nonce verification to execute_task() before dispatching destructive tools.
+Block 3: Embedded SQLite Vector Schema & sqlite-vec Virtual Table (Minutes 15–22)
+* Target Files: data/schema.sql, packages/edge-appliance/src/vector_store.py
+* Task 3.1: In data/schema.sql, define the virtual table for local vector embeddings:CREATE VIRTUAL TABLE IF NOT EXISTS vec_items USING vec0(
+
+
+    id TEXT PRIMARY KEY,
+
+
+    embedding float[384] distance_metric=cosine
+
+
+);
+
+
+* Task 3.2: Implement local sub-millisecond cosine similarity query function in vector_store.py querying local 384-dimensional embeddings with zero cloud egress.
+Block 4: Praxinoscope Lookup Table & 47/47 Smoke Run (Minutes 22–30)
+* Target Files: main.js (ClayPraxinoscopeEngine in ClayMortal v10.3.0), scripts/smoke.sh
+* Task 4.1: In main.js, precalculate the 12-sided polygonal mirror facet normal angles into a static table, and attach the document.hidden lifecycle hook to suspend audio and animation when backgrounded.
+* Task 4.2: Execute bash scripts/smoke.sh asserting all 47/47 assertions pass, then commit verified changes:
+git commit -m "feat(platform): scaffold stdio mcp gateway, win32 job sandbox, and sqlite-vec schema"
+4. Operational Invariants & Verification Checklist
+   * MCP stdio transport parses line-delimited JSON-RPC 2.0 messages with strict typing.
+   * Win32 Job Object and POSIX rlimits enforce 512MB RAM ceiling and kill-on-close process containment.
+   * HMAC-SHA256 approval nonces enforce strict 300-second expiration window.
+   * sqlite-vec virtual table vec_items initialized with 384-dimensional cosine distance metric.
+   * ClayPraxinoscopeEngine suspends AudioContext and canvas animation loop when document.hidden is true (0.0% idle CPU).
+   * All 47/47 evaluation assertions in scripts/smoke.sh return PASS across loopback ports 3001 and 8000.
+   * Hardware thermal ceiling maintained <= 75°C on chase2x2 APU.

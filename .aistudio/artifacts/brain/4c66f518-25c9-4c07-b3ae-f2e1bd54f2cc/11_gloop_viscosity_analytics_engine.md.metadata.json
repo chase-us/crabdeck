@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Gloop Viscosity & Sludge Reserves Analytics Engine. Details the Gray-Scott reaction-diffusion numerical stability manifolds, parameter clamping (feed rate F, kill rate k), sludge buffer monitoring, and viscosity valve booster controls.",
+  "updatedAt":  "2026-11-01T10:58:23.181375987Z",
+  "userFacing":  true
+}

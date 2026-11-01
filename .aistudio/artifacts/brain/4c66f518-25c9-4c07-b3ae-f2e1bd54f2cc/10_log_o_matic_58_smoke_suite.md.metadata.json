@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for Log-O-Matic 3000 and the 58/58 Smoke Suite Verification. Details the real-time telemetry log aggregator, log level filtering, Section 17 smoke assertions (AST certification, Hob sandbox isolation, circuit breaker trip), and zero-WAN loopback audit seals.",
+  "updatedAt":  "2026-11-01T10:58:04.384941196Z",
+  "userFacing":  true
+}

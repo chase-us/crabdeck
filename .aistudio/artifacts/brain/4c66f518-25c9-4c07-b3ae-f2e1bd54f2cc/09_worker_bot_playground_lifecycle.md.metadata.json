@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Worker Bot Playground and Autonomous Agent Lifecycle. Covers worker bot state machine (HAPPY, WIGGLY, SLEEPY, ZOOMING, SYNCED), kinematic spring wiggle physics, Moltcrab/Moltlobster container reconciliation, and auto-sync protocol.",
+  "updatedAt":  "2026-11-01T10:57:48.637635769Z",
+  "userFacing":  true
+}

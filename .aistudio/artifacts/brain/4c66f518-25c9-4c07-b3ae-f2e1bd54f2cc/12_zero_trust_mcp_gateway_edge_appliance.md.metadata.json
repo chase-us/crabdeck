@@ -1,0 +1,5 @@
+{
+  "summary":  "Technical specification for the Zero-Trust MCP Gateway and Sovereign Edge-Inference Appliance. Details dual-transport MCP (stdio IPC and HTTP SSE), runtime Zod/Pydantic schema validation, OS-level kernel sandboxing (Win32 Job Objects, POSIX rlimits), and HMAC-SHA256 cryptographic execution nonces.",
+  "updatedAt":  "2026-11-01T10:58:37.736816551Z",
+  "userFacing":  true
+}

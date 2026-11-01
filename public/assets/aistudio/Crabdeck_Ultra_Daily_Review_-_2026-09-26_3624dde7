@@ -1,0 +1,60 @@
+﻿Architectural Review: 3D Clay Slinky on Stairs, Wave Kinematics & Swarm Pipeline Soliton Simulation
+Date: September 26, 2026
+Archive Location: Daily Code Reviews Archive (inside Crabdeck Quantum Omni-Layer Workspace)
+Evaluated Artifacts & Sources:
+
+
+* claymortal_web_system_v7.1.zip (Release v7.1.0)
+* Crabdeck Ultra Daily Sprint Briefing - 2026-09-26
+* Crabdeck Ultra Daily Review - 2026-09-25
+* Primary Project Checklist
+* Crabdeck Quantum Omni-Layer - Master Workspace & Knowledge Base
+1. Executive Summary & Initial Breakdown
+Today's architectural review evaluates the milestone deployment of claymortal_web_system_v7.1.zip—introducing ClaySlinkyEngine on hobbies.html (simulating Richard James's 1843 pre-compressed helical spring walking end-over-end down tiered wooden stairs, modeling longitudinal tension waves and shear wave dispersion across 32 individual 3D helical coils, 4 kinematic inversion phases, dual-transient Web Audio acoustic synthesis with iconic laser chirp and step thud, endless escalator looping, 4 spectral coil palettes, and interactive pointer drag-to-stretch physics) in conjunction with ongoing multi-agent swarm directives in Crabdeck Ultra Daily Sprint Briefing - 2026-09-26. Key evaluation vectors include Web Audio global mute state compliance, master compressor routing and peak gain clamping, resting-state render loop gating, static staircase pre-rendering on OffscreenCanvas, input coordinate boundary sanitization on drag physics, bHive multi-agent pipeline wavefront synchronization, and topological quantum soliton transport simulation.
+2. Spark Automation Council Perspectives
+The Integration Architect
+"The introduction of ClaySlinkyEngine on hobbies.html delivers an exceptional kinematic and mechanical metaphor for Crabdeck's distributed multi-agent swarm pipeline scheduling and asynchronous stage transitions:
+
+
+1. Helical Wave Kinematics as Swarm Wavefront Propagation: The 32 individual helical coils represent a continuous physical model for wavefront propagation in distributed peer-to-peer agent networks. As the slinky stretches, leans, and inverts over the step edge, longitudinal compression waves ($p < 0.25$) and shear wave dispersion ($0.25 \le p < 0.70$) accurately depict pipeline stage buffering and batch job migration between discrete worker nodes (represented by the tiered wooden steps).
+2. Endless Escalator as Continuous Task Ingestion Loop: The endless staircase mode (isEndless = true) provides an intuitive visual counterpart to persistent FIFO queue processing in Crabdeck's Redis Streams gateway. Each step traversed represents a completed micro-batch, while the step counter (stepsWalked) maps to total processed job metrics across worker agent clusters.
+3. Drag-to-Stretch as Elastic Capacity Throttling: The interactive pointer stretch interaction ($base1 \to (dragX, dragY)$) serves as a physical control metaphor for dynamic batch size scaling or backpressure dampening. Stretching the coils increases tension and delays the inversion cycle, visually modeling backpressure accumulation and consumer queue backoff.
+4. Headless Swarm Telemetry Bridge: The exposed API on window.CLAY_SYSTEM (launchSlinkyWalk, toggleEndlessStairs, cycleSlinkyStyle, resetSlinky, getSlinkyState) provides a clean entry point for background Redis Pub/Sub gateway subscribers to dynamically manipulate slinky stepping, monitor progress, and poll mechanical telemetry directly from headless agent routines."
+The Permissions Guard (Red Teamer)
+"Scrutinizing execution boundaries, memory usage, and audio policies reveals several critical vulnerabilities that require immediate hardening:
+
+
+1. Web Audio Global Mute Bypass in Chirp and Thud Synthesis: In playChirpSound(), both the sawtooth dispersion chirp oscillator (sweeping 3400 Hz down to 580 Hz) and the sine wooden thud oscillator connect directly to this.audioCtx.destination without evaluating (window as any).claySynth?.isMuted. If an operator has globally muted audio in the navigation bar or is running automated headless CI in a quiet environment, step impacts unexpectedly blast high-frequency audio. The method must prepend if ((window as any).claySynth?.isMuted) return;.
+2. Direct Output Routing & Peak Gain Clamping: Connecting directly to this.audioCtx.destination bypasses the system's masterCompressor. Rapid dragging and releasing or rapid step transitions can cause polyphonic overlap between the 0.20 chirp gain and 0.28 thud gain, resulting in digital audio clipping, distortion, and speaker popping. All audio output must route through (window as any).claySynth?.masterCompressor || this.audioCtx.destination, with peak master gain clamped below 0.22.
+|---|Unbounded Drag Coordinates: During pointer drag (mousedown / mousemove / touchmove), this.dragX and this.dragY are assigned directly from event coordinates without canvas boundary clamping. An operator or automated script dragging off-canvas can produce extreme coil stretch lengths, resulting in coordinate overflow ($NaN$) in tangent angle calculations (Math.atan2(dy, dx)), permanently breaking the coil rendering loop. Drag coordinates must be clamped strictly within canvas bounds: Math.max(0, Math.min(this.width, mx)), Math.max(0, Math.min(this.height, my)).
+3. Missing Headless Speed & Style Validation: The exposed API should provide and sanitize input methods like setSlinkySpeed(speed) and setSlinkyStyle(style), clamping speed between $0.005$ and $0.05$ and validating style against a strict whitelist (['rainbow', 'brass', 'steel', 'crimson'])."
+The Cognitive Load Analyst (End-User)
+"Evaluating the visual and acoustic ergonomics on hobbies.html:
+
+
+   1. Tactile Skeuomorphic Aesthetic: The 32 coil ellipses with 3D drop shadows (shadowColor = 'rgba(0,0,0,0.35)'), specular gloss highlights (rgba(255,255,255,0.65)), oak riser gradients, and brass step nosing trim create an extraordinary tactile experience on hobbies.html.
+   2. Step Counter and State Badge Accessibility: The status badge text (Step: 0/5 | Style: RAINBOW | Walking | Endless: ON | Walked: 42) is visually dense. Separating metrics into clean, distinct visual chips (Step indicator, Speed indicator, Style chip, and Walked count) will improve at-a-glance scanning during long monitoring sessions.
+   3. Pause/Resume Visual Affordance: When the slinky reaches the bottom of the stairs in non-endless mode (isEndless = false), it abruptly stops walking. Adding a resting bounce animation or a pulsing 'Restart' button gives clear affordance to the operator.
+   4. Acoustic Tonal Balancing: The 3400 Hz down-chirp is piercing; adjusting the start frequency to 2800 Hz and applying an exponential gain taper softens high-frequency harshness while preserving the iconic laser sound."
+The Agentic Visionary
+"Connecting ClaySlinkyEngine to frontier quantum and multi-agent coordination paradigms:
+
+
+   1. Topological Soliton & Wavepacket Quantum Simulation: In 1D quantum lattice systems and Su-Schrieffer-Heeger (SSH) topological models, soliton wavepackets propagate along helical polymers with dispersion-free transport. The 32-coil slinky walking down stairs can be mathematically mapped to a 1D lattice with alternating hopping amplitudes ($t_1, t_2$), allowing developers to simulate topological edge state localized wavepackets and Su-Schrieffer-Heeger quantum soliton transport directly on the canvas!
+   2. Dynamic Swarm Pipeline Latency Visualizer: In Crabdeck's distributed multi-agent pipeline (Ingestion -> Analysis -> Refactor -> Test -> Deploy), each step corresponds to an execution stage. As tasks flow through stages, coil density along the slinky arch dynamically visualizes in-flight task density and buffer saturation.
+   3. Autonomous Style Re-Skinning Based on Build Status: Connect the 4 slinky color styles to swarm CI/CD status: Rainbow for normal development, Brass for staging deployment, Steel for stable production, and Crimson for build failures or security alerts."
+The Trigger Optimizer
+"Profiling render loop performance and battery conservation:
+
+
+   1. Unrestricted Continuous requestAnimationFrame Loop: Currently, render() schedules the next frame unconditionally via requestAnimationFrame(() => this.render()), even when !this.isWalking and not dragging, and even when the canvas is scrolled out of the viewport! The canvas recomputes 32 coil ellipses, multiple linear/radial gradients, and drop shadows on every frame.
+   2. Stationary Equilibrium Resting-State Gating: When !this.isWalking && !this.isDragging, the engine should pause its animation loop once the coils settle, resuming immediately on launchWalk(), drag, or API triggers.
+   3. IntersectionObserver Viewport Gating: Wrapping the canvas in an IntersectionObserver to pause rendering when scrolled out of view reduces idle background CPU usage to 0% on mobile Termux runtimes.
+   4. OffscreenCanvas Background & Staircase Caching: The playroom linear gradient, brass beveled border, and 5-step wooden staircase with carpet runners are completely static. Pre-rendering them onto an internal stairsCacheCanvas once during resize() and copying them via a single ctx.drawImage() eliminates over 50% of per-frame canvas draw calls."
+3. Council Consensus & Action Plan
+   * Web Audio Global Mute Compliance: Prepend if ((window as any).claySynth?.isMuted) return; to playChirpSound() in ClaySlinkyEngine to ensure complete compliance with the global audio mute button.
+   * Master Compressor Routing & Frequency Softening: Route chirp and wooden thud oscillator gain nodes through (window as any).claySynth?.masterCompressor || this.audioCtx.destination, clamping peak gain below 0.22 and tuning the chirp sweep (2800 Hz down to 580 Hz) to eliminate high-frequency acoustic distortion.
+   * Drag Boundary Clamping & Input Validation: Clamp dragX and dragY within canvas bounds during pointer interaction, and add input sanitization on exposed headless methods (setSlinkySpeed, setSlinkyStyle).
+   * Resting-State Render Loop Gating & Viewport Observer: Pause requestAnimationFrame when the slinky is paused/settled and gate the render loop via IntersectionObserver when scrolled out of view to maintain 0% idle CPU usage on mobile Termux runtimes.
+   * OffscreenCanvas Staircase Pre-Rendering: Cache static playroom background, brass beveled borders, and tiered wooden staircases onto an internal OffscreenCanvas to eliminate >50% of per-frame canvas draw calls.
+   * bHive Swarm Pipeline Wavefront & Quantum Soliton Bridge: Connect the 32 helical coils and stair step progression to bHive multi-agent pipeline stage handoffs and Qiskit Su-Schrieffer-Heeger (SSH) topological quantum soliton wavepacket simulations.
